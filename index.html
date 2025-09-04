@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ta">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>தமிழ் மன்றம் - திருக்குறள் வினாடி வினா</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@400;600&family=Noto+Sans+Tamil:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="container header-content">
+        <div class="logo">
+          <img
+            class="fas fa-leaf tamil-text"
+            width="20%"
+            height="20%"
+            src="./imgs/jce_logo.png"
+          />
+
+          <h1 style="padding-left: 2%" class="tamil-text">தமிழ் மன்றம்</h1>
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="#" class="tamil-text" data-key="nav.home">முகப்பு</a>
+            </li>
+            <li>
+              <a href="#" class="tamil-text" data-key="nav.events"
+                >நிகழ்வுகள்</a
+              >
+            </li>
+            <li>
+              <a href="" class="tamil-text" data-key="nav.kural">திருக்குறள்</a>
+            </li>
+            <li>
+              <a href="#" class="tamil-text" data-key="nav.contact"
+                >தொடர்புகள்</a
+              >
+            </li>
+            <li>
+              <div class="language-switcher" id="languageSwitcher">
+                <div class="language-flag">EN</div>
+                <span class="tamil-text" data-key="language">தமிழ்</span>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <h2 class="tamil-text" data-key="hero.title">
+          திருக்குறள் வினாடி வினா
+        </h2>
+        <p class="tamil-text" data-key="hero.subtitle">
+          திருவள்ளுவரின் திருக்குறளின் அறிவையும், ஞானத்தையும் சோதித்து
+          பார்த்துக்கொள்ளுங்கள்
+        </p>
+        <a href="#quiz" class="cta-button tamil-text" data-key="hero.cta"
+          >வினாடி வினாவில் பங்குபெறுக</a
+        >
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <h2 class="section-title tamil-text" data-key="features.title">
+          நமது சிறப்பம்சங்கள்
+        </h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-trophy"></i>
+            </div>
+            <h3 class="tamil-text" data-key="features.prizes.title">
+              பரிசுகள்
+            </h3>
+            <p class="tamil-text" data-key="features.prizes.desc">
+              சிறந்த பங்கேற்பாளர்களுக்கு அருமையான பரிசுகள்
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3
+              id="thirukulaQuiz"
+              class="tamil-text"
+              data-key="features.teams.title"
+            >
+              குழு போட்டிகள்
+            </h3>
+            <p class="tamil-text" data-key="features.teams.desc">
+              நண்பர்கள் மற்றும் குடும்பத்தினருடன் குழுவாக பங்கேற்கலாம்
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-book"></i>
+            </div>
+            <h3 class="tamil-text" data-key="features.knowledge.title">
+              திருக்குறள் அறிவு
+            </h3>
+            <p class="tamil-text" data-key="features.knowledge.desc">
+              திருக்குறளின் அறிவையும் ஞானத்தையும் வளர்த்துக் கொள்ளுங்கள்
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="events">
+      <div class="container">
+        <h2 class="section-title tamil-text" data-key="events.title">
+          வரவிருக்கும் நிகழ்வுகள்
+        </h2>
+        <div class="events-grid">
+          <div class="event-card">
+            <div class="event-img">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <div class="event-content">
+              <div class="event-date tamil-text" data-key="events.round1.date">
+                ஜூலை 25, 2023
+              </div>
+              <h3 class="tamil-text" data-key="events.round1.title">
+                திருக்குறள் வினாடி வினா - முதல் சுற்று
+              </h3>
+              <p class="tamil-text" data-key="events.round1.desc">
+                முதல் சுற்று போட்டியில் கலந்து கொண்டு அறிவை சோதிக்கவும்.
+              </p>
+            </div>
+          </div>
+          <div class="event-card">
+            <div class="event-img">
+              <i class="fas fa-medal"></i>
+            </div>
+            <div class="event-content">
+              <div class="event-date tamil-text" data-key="events.round2.date">
+                ஆகஸ்ட் 15, 2023
+              </div>
+              <h3 class="tamil-text" data-key="events.round2.title">
+                இரண்டாம் சுற்று - இறுதிப் போட்டி
+              </h3>
+              <p class="tamil-text" data-key="events.round2.desc">
+                இரண்டாம் சுற்று போட்டியில் கலந்து கொண்டு வெற்றி பெறுங்கள்.
+              </p>
+            </div>
+          </div>
+          <div class="event-card">
+            <div class="event-img">
+              <i class="fas fa-gift"></i>
+            </div>
+            <div class="event-content">
+              <div class="event-date tamil-text" data-key="events.awards.date">
+                ஆகஸ்ட் 30, 2023
+              </div>
+              <h3 class="tamil-text" data-key="events.awards.title">
+                பரிசு வழங்கும் விழா
+              </h3>
+              <p class="tamil-text" data-key="events.awards.desc">
+                வெற்றி பெற்ற பங்கேற்பாளர்களுக்கு பரிசுகள் வழங்கப்படும்.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Quiz Req Form -->
+    <section class="quiz-form" id="quiz">
+      <div class="container">
+        <h2 class="section-title tamil-text">வினாடி வினா பதிவு</h2>
+        <div class="form-container">
+          <h3 class="form-title tamil-text">பங்கேற்பதற்கு பதிவு செய்யுங்கள்</h3>
+          <form id="tirukural-quiz-form">
+            <div class="form-group">
+              <label for="name" class="tamil-text">பெயர்</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="tamil-text"
+              />
+            </div>
+            <div class="form-group">
+              <label for="email" class="tamil-text">மின்னஞ்சல்</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="phone" class="tamil-text">தொலைபேசி எண்</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                required
+                class="tamil-text"
+              />
+            </div>
+            <div class="form-group">
+              <label for="experience" class="tamil-text"
+                >திருக்குறள் அனுபவம்</label
+              >
+              <textarea
+                id="experience"
+                name="experience"
+                class="tamil-text"
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-btn tamil-text">
+              பதிவு செய்க
+            </button>
+          </form>
+          <div
+            id="form-message"
+            class="tamil-text"
+            style="text-align: center; margin-top: 20px; display: none"
+          ></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Add this script at the end of your body tag -->
+    <script>
+      // Google Apps Script Web App URL (you need to create this)
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwc86ONlauqwsfUjozPc7hVw3BdJmB_qk3HkiK7eKG7YsKqmf_SswBb1nzcw0F6qa4rRg/exec";
+      // Form submission handler
+      document
+        .getElementById("tirukural-quiz-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // Show loading state
+          const submitBtn = this.querySelector(".submit-btn");
+          const originalText = submitBtn.textContent;
+          submitBtn.textContent = "பதிவு செய்யப்படுகிறது...";
+          submitBtn.disabled = true;
+
+          // Hide any previous messages
+          const messageDiv = document.getElementById("form-message");
+          messageDiv.style.display = "none";
+
+          // Collect form data
+          const formData = new FormData(this);
+          const data = {};
+          formData.forEach((value, key) => {
+            data[key] = value;
+          });
+
+          // Add timestamp
+          data.timestamp = new Date().toLocaleString();
+
+          // Send data to Google Sheets
+          fetch(scriptURL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          })
+            .then(() => {
+              messageDiv.textContent =
+                "பதிவு வெற்றிகரமாக செய்யப்பட்டது! விரைவில் உங்களை தொடர்பு கொள்வோம்.";
+              messageDiv.style.color = "green";
+              messageDiv.style.display = "block";
+              this.reset();
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              messageDiv.textContent =
+                "பதிவில் பிழை ஏற்பட்டது. தயவு செய்து மீண்டும் முயற்சிக்கவும்.";
+              messageDiv.style.color = "red";
+              messageDiv.style.display = "block";
+            })
+            .finally(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.disabled = false;
+            });
+        });
+    </script>
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3 class="tamil-text" data-key="footer.about">தமிழ் மன்றம்</h3>
+            <p class="tamil-text" data-key="footer.aboutDesc">
+              தமிழ் மொழி மற்றும் கலாச்சாரத்தை பரப்புவதே நமது நோக்கம்
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3 class="tamil-text" data-key="footer.contact">தொடர்புகள்</h3>
+            <p class="tamil-text">மின்னஞ்சல்: info@tamilmandram.com</p>
+            <p class="tamil-text">தொலைபேசி: +91 98765 43210</p>
+          </div>
+          <div class="footer-section">
+            <h3 class="tamil-text" data-key="footer.social">சமூக ஊடகங்கள்</h3>
+            <div class="social-icons">
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p class="tamil-text" data-key="footer.copyright">
+            &copy; 2023 தமிழ் மன்றம். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.
+          </p>
+        </div>
+      </div>
+      <!-- Back to top button -->
+      <button
+        id="backToTop"
+        style="display: none; position: fixed; bottom: 20px; right: 20px"
+      >
+        <i class="fas fa-arrow-up"></i> மேலே செல்
+      </button>
+
+      <script>
+        // Back to top functionality
+        const backToTopBtn = document.getElementById("backToTop");
+
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        });
+
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > 300) {
+            backToTopBtn.style.display = "block";
+          } else {
+            backToTopBtn.style.display = "none";
+          }
+        });
+      </script>
+    </footer>
+
+    <!-- Copy Protection Notification -->
+    <div class="copy-notification" id="copyNotification">
+      <p class="tamil-text" data-key="copyNotification">
+        நகல் எடுக்க தடைவிதிக்கப்பட்டுள்ளது!
+      </p>
+    </div>
+
+    <script>
+      // Language translation system
+      const translations = {
+        ta: {
+          // Navigation
+          "nav.home": "முகப்பு",
+          "nav.events": "நிகழ்வுகள்",
+          "nav.kural": "திருக்குறள்",
+          "nav.contact": "தொடர்புகள்",
+          language: "தமிழ்",
+
+          // Hero section
+          "hero.title": "திருக்குறள் வினாடி வினா",
+          "hero.subtitle":
+            "திருவள்ளுவரின் திருக்குறளின் அறிவையும், ஞானத்தையும் சோதித்து பார்த்துக்கொள்ளுங்கள்",
+          "hero.cta": "வினாடி வினாவில் பங்குபெறுக",
+
+          // Features
+          "features.title": "நமது சிறப்பம்சங்கள்",
+          "features.prizes.title": "பரிசுகள்",
+          "features.prizes.desc":
+            "சிறந்த பங்கேற்பாளர்களுக்கு அருமையான பரிசுகள்",
+          "features.teams.title": "குழு போட்டிகள்",
+          "features.teams.desc":
+            "நண்பர்கள் மற்றும் குடும்பத்தினருடன் குழுவாக பங்கேற்கலாம்",
+          "features.knowledge.title": "திருக்குறள் அறிவு",
+          "features.knowledge.desc":
+            "திருக்குறளின் அறிவையும் ஞானத்தையும் வளர்த்துக் கொள்ளுங்கள்",
+
+          // Events
+          "events.title": "வரவிருக்கும் நிகழ்வுகள்",
+          "events.round1.date": "ஜூலை 25, 2023",
+          "events.round1.title": "திருக்குறள் வினாடி வினா - முதல் சுற்று",
+          "events.round1.desc":
+            "முதல் சுற்று போட்டியில் கலந்து கொண்டு அறிவை சோதிக்கவும்.",
+          "events.round2.date": "ஆகஸ்ட் 15, 2023",
+          "events.round2.title": "இரண்டாம் சுற்று - இறுதிப் போட்டி",
+          "events.round2.desc":
+            "இரண்டாம் சுற்று போட்டியில் கலந்து கொண்டு வெற்றி பெறுங்கள்.",
+          "events.awards.date": "ஆகஸ்ட் 30, 2023",
+          "events.awards.title": "பரிசு வழங்கும் விழா",
+          "events.awards.desc":
+            "வெற்றி பெற்ற பங்கேற்பாளர்களுக்கு பரிசுகள் வழங்கப்படும்.",
+
+          // Form
+          "form.title": "வினாடி வினா பதிவு",
+          "form.subtitle": "பங்கேற்பதற்கு பதிவு செய்யுங்கள்",
+          "form.name": "பெயர்",
+          "form.email": "மின்னஞ்சல்",
+          "form.phone": "தொலைபேசி எண்",
+          "form.experience": "திருக்குறள் அனுபவம்",
+          "form.submit": "பதிவு செய்க",
+
+          // Footer
+          "footer.about": "தமிழ் மன்றம்",
+          "footer.aboutDesc":
+            "தமிழ் மொழி மற்றும் கலாச்சாரத்தை பரப்புவதே நமது நோக்கம்",
+          "footer.contact": "தொடர்புகள்",
+          "footer.social": "சமூக ஊடகங்கள்",
+          "footer.copyright":
+            "&copy; 2023 தமிழ் மன்றம். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+
+          // Notification
+          copyNotification: "நகல் எடுக்க தடைவிதிக்கப்பட்டுள்ளது!",
+        },
+        en: {
+          // Navigation
+          "nav.home": "Home",
+          "nav.events": "Events",
+          "nav.kural": "Thirukural",
+          "nav.contact": "Contact",
+          language: "English",
+
+          // Hero section
+          "hero.title": "Thirukural Quiz Competition",
+          "hero.subtitle":
+            "Test your knowledge and wisdom of Thiruvalluvar's Thirukural",
+          "hero.cta": "Participate in Quiz",
+
+          // Features
+          "features.title": "Our Features",
+          "features.prizes.title": "Prizes",
+          "features.prizes.desc": "Excellent prizes for top participants",
+          "features.teams.title": "Team Competitions",
+          "features.teams.desc":
+            "Participate as a team with friends and family",
+          "features.knowledge.title": "Thirukural Knowledge",
+          "features.knowledge.desc":
+            "Enhance your knowledge and wisdom of Thirukural",
+
+          // Events
+          "events.title": "Upcoming Events",
+          "events.round1.date": "July 25, 2023",
+          "events.round1.title": "Thirukural Quiz - First Round",
+          "events.round1.desc":
+            "Participate in the first round and test your knowledge.",
+          "events.round2.date": "August 15, 2023",
+          "events.round2.title": "Second Round - Final Competition",
+          "events.round2.desc":
+            "Participate in the second round and win the competition.",
+          "events.awards.date": "August 30, 2023",
+          "events.awards.title": "Award Ceremony",
+          "events.awards.desc":
+            "Prizes will be awarded to the winning participants.",
+
+          // Form
+          "form.title": "Quiz Registration",
+          "form.subtitle": "Register for participation",
+          "form.name": "Name",
+          "form.email": "Email",
+          "form.phone": "Phone Number",
+          "form.experience": "Thirukural Experience",
+          "form.submit": "Register",
+
+          // Footer
+          "footer.about": "Tamil Mandram",
+          "footer.aboutDesc":
+            "Our mission is to spread Tamil language and culture",
+          "footer.contact": "Contacts",
+          "footer.social": "Social Media",
+          "footer.copyright": "&copy; 2023 Tamil Mandram. All rights reserved.",
+
+          // Notification
+          copyNotification: "Copying is restricted!",
+        },
+      };
+
+      let currentLanguage = "ta";
+
+      // Function to change language
+      function changeLanguage(lang) {
+        currentLanguage = lang;
+
+        // Update all elements with data-key attribute
+        document.querySelectorAll("[data-key]").forEach((element) => {
+          const key = element.getAttribute("data-key");
+          if (translations[lang][key]) {
+            if (element.placeholder) {
+              element.placeholder = translations[lang][key];
+            } else {
+              element.innerHTML = translations[lang][key];
+            }
+          }
+        });
+
+        // Update language switcher text
+        document.querySelector(".language-flag").textContent =
+          lang === "ta" ? "EN" : "TA";
+
+        // Change font family based on language
+        if (lang === "ta") {
+          document.querySelectorAll(".tamil-text").forEach((el) => {
+            el.classList.remove("english-text");
+            el.classList.add("tamil-text");
+          });
+        } else {
+          document.querySelectorAll(".tamil-text").forEach((el) => {
+            el.classList.remove("tamil-text");
+            el.classList.add("english-text");
+          });
+        }
+      }
+
+      // Toggle language on button click
+      document
+        .getElementById("languageSwitcher")
+        .addEventListener("click", function () {
+          const newLanguage = currentLanguage === "ta" ? "en" : "ta";
+          changeLanguage(newLanguage);
+        });
+
+      // Copy protection
+      document.addEventListener("copy", function (e) {
+        e.preventDefault();
+        showCopyNotification();
+        logCopyAttempt();
+      });
+
+      document.addEventListener("cut", function (e) {
+        e.preventDefault();
+        showCopyNotification();
+      });
+
+      document.addEventListener("paste", function (e) {
+        e.preventDefault();
+        showCopyNotification();
+      });
+
+      // Right-click disable
+      document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+        showCopyNotification();
+      });
+
+      function showCopyNotification() {
+        const notification = document.getElementById("copyNotification");
+        notification.style.display = "block";
+
+        setTimeout(function () {
+          notification.style.display = "none";
+        }, 3000);
+      }
+
+      function logCopyAttempt() {
+        // In a real implementation, this would send data to Google Forms or a server
+        console.log("Copy attempt detected and blocked");
+      }
+
+      // Form submission handling
+      document
+        .getElementById("tirukural-quiz-form")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          // In a real implementation, this would submit to Google Forms
+          alert(
+            currentLanguage === "ta"
+              ? "பதிவு வெற்றிகரமாக செய்யப்பட்டது! விரைவில் உங்களை தொடர்பு கொள்வோம்."
+              : "Registration successful! We will contact you soon."
+          );
+          this.reset();
+        });
+
+      // Dynamic content loading simulation
+      document.addEventListener("DOMContentLoaded", function () {
+        // Simulate dynamic content loading
+        setTimeout(function () {
+          const eventsSection = document.querySelector(".events");
+          const moreButton = document.createElement("div");
+          moreButton.style.textAlign = "center";
+          moreButton.style.marginTop = "30px";
+
+          const button = document.createElement("button");
+          button.className = "cta-button";
+          button.style.background = "#ff6b6b";
+          button.textContent =
+            currentLanguage === "ta" ? "மேலும் நிகழ்வுகள்" : "More Events";
+          button.classList.add(
+            currentLanguage === "ta" ? "tamil-text" : "english-text"
+          );
+
+          moreButton.appendChild(button);
+          eventsSection.appendChild(moreButton);
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>
