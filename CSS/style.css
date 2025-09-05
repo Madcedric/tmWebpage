@@ -22,7 +22,7 @@
         header {
             background: linear-gradient(to right, #1a3c34, #2a5c4c);
             color: white;
-            padding: 15px 0;
+            padding: 5px 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
@@ -34,16 +34,29 @@
             justify-content: space-between;
             align-items: center;
         }
+
+        
+        .hero {
+            background-image: url("imgs/imgHero.png");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;    
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;    
+        }
+        
         
         .logo {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 4px;
         }
         
         .logo img {
-            height: 50px;
+            height: 50%;
         }
         
         .logo h1 {
@@ -72,6 +85,8 @@
         nav a:hover {
             color: #ffd700;
             background: rgba(255, 255, 255, 0.1);
+         padding: 8px 15px;
+            border-radius: 50px;
         }
         
         /* Language Switcher */
@@ -182,6 +197,26 @@
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s;
+            cursor: pointer;
+            box-shadow: #1a3c34;
+            border: 2px solid #2a5c4c;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            font-weight: 600;
+            color: #1a3c34;
+            font-size: 1.1rem;
+            font-family: 'Hind Madurai', sans-serif;
+            text-align: center;
+            line-height: 1.4;
+            letter-spacing: 0.02em;
+            box-shadow: 0 4px 15px rgba(42, 92, 76, 0.2);
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #c6e6c6 0%, #eee9a3 100%);
+
         }
         
         .feature-card:hover {
@@ -216,7 +251,9 @@
             background: white;
             border-radius: 10px;
             overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+
         }
         
         .event-img {

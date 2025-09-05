@@ -14,19 +14,35 @@
     />
     <link rel="stylesheet" href="CSS/style.css" />
   </head>
+
   <body>
     <!-- Header Section -->
     <header>
+     
       <div class="container header-content">
         <div class="logo">
           <img
             class="fas fa-leaf tamil-text"
             width="20%"
             height="20%"
+            style="display: block; margin-right: 10px"
             src="./imgs/jce_logo.png"
           />
 
-          <h1 style="padding-left: 2%" class="tamil-text">தமிழ் மன்றம்</h1>
+          <h1
+            class="tamil-text"
+            style="
+              font-family: 'Times New Roman', Times, serif;
+              font-weight: 800;
+              font-size: 24px;
+              display: block;
+              margin-right: 10px;
+              margin: 0;
+              color: #fff;
+            "
+          >
+            Jerusalem College of Engineering
+          </h1>
         </div>
         <nav>
           <ul>
@@ -34,15 +50,17 @@
               <a href="#" class="tamil-text" data-key="nav.home">முகப்பு</a>
             </li>
             <li>
-              <a href="#" class="tamil-text" data-key="nav.events"
+              <a href="#events" class="tamil-text" data-key="nav.events"
                 >நிகழ்வுகள்</a
               >
             </li>
             <li>
-              <a href="" class="tamil-text" data-key="nav.kural">திருக்குறள்</a>
+              <a href="#tkural" class="tamil-text" data-key="nav.kural"
+                >திருக்குறள்</a
+              >
             </li>
             <li>
-              <a href="#" class="tamil-text" data-key="nav.contact"
+              <a href="#contact" class="tamil-text" data-key="nav.contact"
                 >தொடர்புகள்</a
               >
             </li>
@@ -55,7 +73,29 @@
           </ul>
         </nav>
       </div>
+       
     </header>
+    <section class="banner">
+          </section>
+<div class="kingster-header-container kingster-container">
+        <div class="kingster-header-container-inner clearfix">
+          <!--<div class="kingster-logo  kingster-item-pdlr">-->
+          <div class="kingster-logo kingster-item-pdlr">
+            <div class="kingster-logo-inner">
+              <a class="" href="https://jerusalemengg.ac.in/"
+                ><img
+                width="100%"
+                  height="100px"
+                  src="https://jerusalemengg.ac.in/img/jce-logo-1.png"
+                  alt="TOP ENGINEERING COLLEGES IN TAMILNADU"
+              /></a>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </section> 
 
     <!-- Hero Section -->
     <section class="hero">
@@ -74,7 +114,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="features">
+    <section class="features" id="tkural">
       <div class="container">
         <h2 class="section-title tamil-text" data-key="features.title">
           நமது சிறப்பம்சங்கள்
@@ -95,23 +135,19 @@
             <div class="feature-icon">
               <i class="fas fa-users"></i>
             </div>
-            <h3
-              id="thirukulaQuiz"
-              class="tamil-text"
-              data-key="features.teams.title"
-            >
+            <h3 class="tamil-text" data-key="features.teams.title">
               குழு போட்டிகள்
             </h3>
             <p class="tamil-text" data-key="features.teams.desc">
               நண்பர்கள் மற்றும் குடும்பத்தினருடன் குழுவாக பங்கேற்கலாம்
             </p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card" id="tQuiz">
             <div class="feature-icon">
               <i class="fas fa-book"></i>
             </div>
             <h3 class="tamil-text" data-key="features.knowledge.title">
-              திருக்குறள் அறிவு
+              திருக்குறள் போட்டிகள்
             </h3>
             <p class="tamil-text" data-key="features.knowledge.desc">
               திருக்குறளின் அறிவையும் ஞானத்தையும் வளர்த்துக் கொள்ளுங்கள்
@@ -122,7 +158,7 @@
     </section>
 
     <!-- Events Section -->
-    <section class="events">
+    <section class="events" id="events">
       <div class="container">
         <h2 class="section-title tamil-text" data-key="events.title">
           வரவிருக்கும் நிகழ்வுகள்
@@ -179,7 +215,7 @@
         </div>
       </div>
     </section>
-    <!-- Quiz Req Form -->
+
     <section class="quiz-form" id="quiz">
       <div class="container">
         <h2 class="section-title tamil-text">வினாடி வினா பதிவு</h2>
@@ -203,7 +239,7 @@
             <div class="form-group">
               <label for="phone" class="tamil-text">தொலைபேசி எண்</label>
               <input
-                type="tel"
+                type="number"
                 id="phone"
                 name="phone"
                 required
@@ -237,7 +273,8 @@
     <script>
       // Google Apps Script Web App URL (you need to create this)
       const scriptURL =
-        "https://script.google.com/macros/s/AKfycbwc86ONlauqwsfUjozPc7hVw3BdJmB_qk3HkiK7eKG7YsKqmf_SswBb1nzcw0F6qa4rRg/exec";
+        "https://script.google.com/a/macros/jerusalemengg.ac.in/s/AKfycbwJtWUwDszNHq0GjpskG9pF9Ec_7CBf-Ubb7mBR8zi2Akx5ZtEhoTDZZruot_oChiLvQw/exec";
+
       // Form submission handler
       document
         .getElementById("tirukural-quiz-form")
@@ -294,10 +331,32 @@
         });
     </script>
     <!-- Footer -->
+
     <footer>
       <div class="container">
-        <div class="footer-content">
+        <div class="footer-content" id="contact">
           <div class="footer-section">
+            <p>
+              <img
+                src="https://jerusalemengg.ac.in/images/JCE.png"
+                alt="BEST ENGINEERING COLLEGE IN TAMILNADU"
+              />
+
+              <br />
+              <span
+                class="gdlr-core-space-shortcode col"
+                id="span_1dd7_10"
+              ></span>
+
+              <br />
+              Velachery main road,
+
+              <br />
+              Narayanapuram, Pallikaranai,
+
+              <br />
+              Chennai- 600 100
+            </p>
             <h3 class="tamil-text" data-key="footer.about">தமிழ் மன்றம்</h3>
             <p class="tamil-text" data-key="footer.aboutDesc">
               தமிழ் மொழி மற்றும் கலாச்சாரத்தை பரப்புவதே நமது நோக்கம்
@@ -324,33 +383,6 @@
           </p>
         </div>
       </div>
-      <!-- Back to top button -->
-      <button
-        id="backToTop"
-        style="display: none; position: fixed; bottom: 20px; right: 20px"
-      >
-        <i class="fas fa-arrow-up"></i> மேலே செல்
-      </button>
-
-      <script>
-        // Back to top functionality
-        const backToTopBtn = document.getElementById("backToTop");
-
-        backToTopBtn.addEventListener("click", () => {
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth",
-          });
-        });
-
-        window.addEventListener("scroll", () => {
-          if (window.pageYOffset > 300) {
-            backToTopBtn.style.display = "block";
-          } else {
-            backToTopBtn.style.display = "none";
-          }
-        });
-      </script>
     </footer>
 
     <!-- Copy Protection Notification -->
@@ -446,7 +478,7 @@
           "features.teams.title": "Team Competitions",
           "features.teams.desc":
             "Participate as a team with friends and family",
-          "features.knowledge.title": "Thirukural Knowledge",
+          "features.knowledge.title": "Thirukural Competitions",
           "features.knowledge.desc":
             "Enhance your knowledge and wisdom of Thirukural",
 
@@ -522,6 +554,11 @@
           });
         }
       }
+
+      //quiz redirection
+      document.getElementById("tQuiz").addEventListener("click", function () {
+        redirecFunc("quiz.html");
+      });
 
       // Toggle language on button click
       document
@@ -605,6 +642,10 @@
           eventsSection.appendChild(moreButton);
         }, 2000);
       });
+
+      function redirecFunc(url) {
+        window.location.href = url;
+      }
     </script>
   </body>
 </html>
