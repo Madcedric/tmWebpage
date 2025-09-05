@@ -228,13 +228,14 @@
                 type="text"
                 id="name"
                 name="name"
-                required
+                
                 class="tamil-text"
               />
             </div>
             <div class="form-group">
               <label for="email" class="tamil-text">மின்னஞ்சல்</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" name="email"  />
+              <button style="padding: 10px;" id="emailCheck"></button>
             </div>
             <div class="form-group">
               <label for="phone" class="tamil-text">தொலைபேசி எண்</label>
@@ -242,7 +243,7 @@
                 type="number"
                 id="phone"
                 name="phone"
-                required
+                
                 class="tamil-text"
               />
             </div>
@@ -268,22 +269,49 @@
         </div>
       </div>
     </section>
-
+<script>
+function clgDomainCheck(){ 
+  const userEmail = document.getElementById("email").value;
+  const index = userEmail.indexOf("@");
+  const domain = userEmail.slice(index + 1);
+  // Hide any previous messages
+  const messageDiv = document.getElementById("form-message");
+  messageDiv.style.display = "none";
+  if(!(domain === "jerusalemengg.ac.in")){
+    messageDiv.textContent ="கல்லூரி மின்னஞ்சலை மட்டும் பயன்படுத்தவும்.";
+    messageDiv.style.color = "red";
+    messageDiv.style.display = "block";
+    console.log("invalid email");
+    return 0;
+  }
+  return 1;
+}
+          
+  
+</script>
     <!-- Add this script at the end of your body tag -->
     <script>
+      // const reqForm = document.getElementById("tirukural-quiz-form");
+      // reqForm.addEventListener("submit", function (e) {
+      //   e.preventDefault(); // Prevent default form submission
+      // let check = clgDomainCheck();
+      // if(check){
       // Google Apps Script Web App URL (you need to create this)
-      const scriptURL =
-        "https://script.google.com/a/macros/jerusalemengg.ac.in/s/AKfycbwJtWUwDszNHq0GjpskG9pF9Ec_7CBf-Ubb7mBR8zi2Akx5ZtEhoTDZZruot_oChiLvQw/exec";
+      const scriptURL = "https://script.google.com/macros/s/AKfycbwc86ONlauqwsfUjozPc7hVw3BdJmB_qk3HkiK7eKG7YsKqmf_SswBb1nzcw0F6qa4rRg/exec";
 
       // Form submission handler
       document
         .getElementById("tirukural-quiz-form")
         .addEventListener("submit", function (e) {
           e.preventDefault();
-
+          if(clgDomainCheck()){
+        
+          console.log("form submitted");
+            
           // Show loading state
           const submitBtn = this.querySelector(".submit-btn");
           const originalText = submitBtn.textContent;
+          console.log(originalText);
           submitBtn.textContent = "பதிவு செய்யப்படுகிறது...";
           submitBtn.disabled = true;
 
@@ -328,6 +356,9 @@
               submitBtn.textContent = originalText;
               submitBtn.disabled = false;
             });
+          }
+          
+          
         });
     </script>
     <!-- Footer -->
