@@ -1,1 +1,113 @@
-testig the git
+.gs finalized ={// ====== CONFIG ======
+const SHEET_ID = "1-pkN-zWRWKws61JZhVAEssfvzs7kw9Eu-4BmGEG-Jnw"; // put your Google Sheet ID here
+const QUESTIONS_SHEET = "Questions";
+const RESPONSES_SHEET = "Responses";
+
+// ====== GET QUESTIONS ======
+function doGet(e) {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
+    const sheet = spreadsheet.getSheetByName(QUESTIONS_SHEET);
+    const data = sheet.getDataRange().getValues();
+    const headers = data[0];
+
+    // Get all questions grouped by pattern
+    const questionsByPattern = {
+      pattern1: [], // starting_word questions
+      pattern2: [], // missing_fields questions  
+      pattern3: []  // ending_word questions
+    };
+
+    for (let i = 1; i < data.length; i++) {
+      const row = data[i];
+      if (row[0] && row[headers.indexOf("Question")]) { // Check if row has ID and Question
+        const questionType = row[headers.indexOf("Type")];
+        const question = {
+          id: row[headers.indexOf("ID")],
+          text: row[headers.indexOf("Question")],
+          type: questionType,
+          correctAnswer: row[headers.indexOf("CorrectAnswer")],
+          explanation: row[headers.indexOf("Explanation")],
+          pattern: row[headers.indexOf("Week")] // Using Week column for pattern now
+        };
+        
+        // Group by question type
+        if (questionType === "starting_word") {
+          questionsByPattern.pattern1.push(question);
+        } else if (questionType === "missing_fields") {
+          questionsByPattern.pattern2.push(question);
+        } else if (questionType === "ending_word") {
+          questionsByPattern.pattern3.push(question);
+        }
+      }
+    }
+
+    // Randomly select one question from each pattern
+    const selectedQuestions = [];
+    
+    // Pattern 1: starting_word
+    if (questionsByPattern.pattern1.length > 0) {
+      const randomIndex = Math.floor(Math.random() * questionsByPattern.pattern1.length);
+      selectedQuestions.push(questionsByPattern.pattern1[randomIndex]);
+    }
+    
+    // Pattern 2: missing_fields  
+    if (questionsByPattern.pattern2.length > 0) {
+      const randomIndex = Math.floor(Math.random() * questionsByPattern.pattern2.length);
+      selectedQuestions.push(questionsByPattern.pattern2[randomIndex]);
+    }
+    
+    // Pattern 3: ending_word
+    if (questionsByPattern.pattern3.length > 0) {
+      const randomIndex = Math.floor(Math.random() * questionsByPattern.pattern3.length);
+      selectedQuestions.push(questionsByPattern.pattern3[randomIndex]);
+    }
+
+    console.log("Selected questions:", selectedQuestions);
+    
+    // JSONP response
+    const callback = e.parameter.callback || "handleQuestions";
+    return ContentService
+      .createTextOutput(`${callback}(${JSON.stringify(selectedQuestions)})`)
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+
+  } catch (err) {
+    console.error("Error in doGet:", err);
+    return ContentService
+      .createTextOutput(`handleQuestions([])`)
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+}
+
+// ====== SAVE RESPONSES ======
+function doPost(e) {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(SHEET_ID);
+    const sheet = spreadsheet.getSheetByName(RESPONSES_SHEET);
+    const body = JSON.parse(e.postData.contents);
+
+    // Create headers if sheet is empty
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["Timestamp", "QuestionID", "QuestionText", "UserAnswer", "Pattern", "ResponseTime"]);
+    }
+
+    sheet.appendRow([
+      new Date(),
+      body.questionId,
+      body.questionText,
+      body.userAnswer,
+      body.pattern || "N/A",
+      body.timestamp
+    ]);
+
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: "success" }))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (err) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ status: "error", message: err.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+}
