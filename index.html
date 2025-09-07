@@ -131,7 +131,7 @@
               சிறந்த பங்கேற்பாளர்களுக்கு அருமையான பரிசுகள்
             </p>
           </div>
-          <div class="feature-card">
+          <div class="feature-card" id="testQuiz">
             <div class="feature-icon">
               <i class="fas fa-users"></i>
             </div>
@@ -576,6 +576,10 @@ function clgDomainCheck(){
       //quiz redirection
       document.getElementById("tQuiz").addEventListener("click", function () {
         redirecFunc("./templates/quiz.html");
+      });
+           //quiz redirection
+      document.getElementById("testQuiz").addEventListener("click", function () {
+        redirecFunc("./templates/quiztest.html");
       });
 
       // Toggle language on button click
