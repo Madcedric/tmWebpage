@@ -12,8 +12,380 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="stylesheet" href="../CSS/quiz.css" />
-    <style></style>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Hind Madurai", "Noto Sans Tamil", sans-serif;
+        background: linear-gradient(135deg, #f9f6e7 0%, #e8f4e8 100%);
+        color: #1a3c34;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      /* Header Styles */
+      header {
+        background: linear-gradient(to right, #1a3c34, #2a5c4c);
+        color: white;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo img {
+        height: 50px;
+      }
+
+      .logo h1 {
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-weight: 800;
+        font-size: 1.8rem;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+        align-items: center;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+
+      nav a:hover {
+        color: #ffd700;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Language Switcher */
+      .language-switcher {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 8px 15px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .language-switcher:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      .language-flag {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        background: #f1c40f;
+        color: #1a3c34;
+      }
+
+      /* Quiz Header */
+      .quiz-header {
+        background: linear-gradient(to right, #1a3c34, #2a5c4c);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .leafLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .leafLogo h1 {
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-weight: 800;
+        font-size: 1.8rem;
+      }
+
+      .quiz-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      .quiz-date {
+        font-size: 1.1rem;
+        color: #ffd700;
+      }
+
+      .timer-container {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .timer {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      /* Quiz Content */
+      .quiz-content {
+        padding: 30px;
+      }
+
+      .webcam-container {
+        margin: 20px 0;
+        text-align: center;
+        display: none;
+      }
+
+      .question-container {
+        margin: 30px 0;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        position: relative;
+      }
+
+      .question-counter {
+        position: absolute;
+        top: -15px;
+        right: 20px;
+        background: #2a5c4c;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+      .question-text {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: #1a3c34;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .answer-input {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        border: 2px solid #2a5c4c;
+        border-radius: 8px;
+        font-family: "Noto Sans Tamil", sans-serif;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .controls-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .submit-container {
+        text-align: center;
+      }
+
+      .result-container {
+        text-align: center;
+        padding: 30px;
+        background: #f0f7ee;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+
+      .completion-container {
+        text-align: center;
+        padding: 40px 30px;
+      }
+
+      .completion-icon {
+        font-size: 4rem;
+        color: #2a5c4c;
+        margin-bottom: 20px;
+      }
+
+      .completion-message {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: #1a3c34;
+      }
+
+      .completion-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      /* Buttons */
+      .cta-button {
+        display: inline-block;
+        background: #2a5c4c;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(42, 92, 76, 0.3);
+        cursor: pointer;
+        border: none;
+      }
+
+      .cta-button:hover {
+        background: #1a3c34;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(42, 92, 76, 0.4);
+      }
+
+      .cta-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .cta-button.secondary {
+        background: #ff6b6b;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      }
+
+      .cta-button.secondary:hover {
+        background: #e05a5a;
+      }
+
+      /* Notification */
+      .notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #ff4d4d;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        display: none;
+        z-index: 1000;
+        animation: fadeIn 0.5s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Tamil Font Styling */
+      .tamil-text {
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-weight: 600;
+      }
+
+      .english-text {
+        font-family: "Hind Madurai", sans-serif;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        nav ul {
+          gap: 15px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .quiz-content {
+          padding: 20px;
+        }
+
+        .question-text {
+          font-size: 1.1rem;
+        }
+
+        .cta-button {
+          padding: 10px 20px;
+          font-size: 1rem;
+        }
+
+        .controls-container {
+          flex-direction: column;
+        }
+
+        .quiz-info {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .completion-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -25,7 +397,6 @@
             alt="தமிழ் மன்றம் லோகோ"
           />
           <h1
-            class="tamil-text"
             style="
               font-family: 'Times New Roman', Times, serif;
               font-weight: 800;
@@ -126,8 +497,12 @@
           <div class="question-counter tamil-text" id="question-counter">
             கேள்வி 1/3
           </div>
-          <div class="question-text tamil-text" id="question-text">
-            எந்த திருக்குறள் 'அகர' என்று தொடங்குகிறது?
+          <div
+            class="question-text tamil-text"
+            id="question-text"
+            data-key="load-question"
+          >
+            கேள்விகளை ஏற்றுகிறது...
           </div>
           <input
             type="text"
@@ -140,7 +515,6 @@
 
         <div class="controls-container">
           <div></div>
-          <!-- Empty div for spacing -->
           <div class="submit-container">
             <button
               id="next-question"
@@ -168,7 +542,7 @@
           </div>
           <div class="completion-buttons">
             <a
-              href="index.html"
+              href="../index.html"
               class="cta-button tamil-text"
               data-key="nav.home"
               >முகப்பு</a
@@ -192,7 +566,7 @@
     <script>
       // Google Apps Script URL (Replace with your deployed script URL)
       const scriptURL =
-        "https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec";
+        "https://script.google.com/macros/s/AKfycbzwZoTWMoz5U3lPDsgf88XbLUbBZNkjrRIPDM18qGDa82uMGo9UG4IB3Ubx53G3jpoR/exec";
 
       // Translation data
       const translations = {
@@ -210,6 +584,7 @@
           "quiz.placeholder": "உங்கள் பதிலை இங்கே 입력வும்",
           "quiz.next": "அடுத்த கேள்வி",
           "completion.message": "வினாடி வினா முடிந்தது!",
+          "load-question": "கேள்விகளை ஏற்றுகிறது...",
         },
         en: {
           "nav.home": "Home",
@@ -225,6 +600,7 @@
           "quiz.placeholder": "Type your answer here",
           "quiz.next": "Next Question",
           "completion.message": "Quiz Completed!",
+          "load-question": "Loading Questions...",
         },
       };
 
@@ -323,39 +699,71 @@
         }
       }
 
-      // Initialize quiz function
-      async function initQuiz() {
-        try {
-          // Fetch questions from Google Apps Script
-          const response = await fetch(scriptURL);
-          const questionsData = await response.json();
+      // Initialize quiz function using JSONP to avoid CORS issues
+      function initQuiz() {
+        // Use JSONP approach
+        const script = document.createElement("script");
+        script.src = `${scriptURL}?callback=handleQuestions&r=${new Date().getTime()}`;
 
-          currentQuestions = questionsData;
+        // Add error handling
+        script.onerror = function () {
+          console.error("Failed to load questions from Google Script");
+          handleQuestions([]);
+        };
+
+        // Set timeout for JSONP request
+        const timeout = setTimeout(function () {
+          document.body.removeChild(script);
+          console.error("JSONP request timed out");
+          handleQuestions([]);
+        }, 5000);
+
+        // Handle successful load
+
+        window.handleQuestions = function (data) {
+          clearTimeout(timeout);
+          document.body.removeChild(script);
+          delete window.handleQuestions;
+
+          console.log("Received from Google Apps Script:", data);
+
+          // Use fetched questions or show error if empty
+          if (!data || data.length === 0) {
+            showNotification(
+              "கேள்விகள் ஏற்றப்படவில்லை! தயவு செய்து பின்னர் முயற்சிக்கவும்."
+            );
+            return;
+          }
+
+          currentQuestions = data;
           currentQuestionIndex = 0;
           answerInputEl.value = "";
           nextQuestionBtn.disabled = true;
 
           // Display the first question
           displayQuestion(currentQuestions[currentQuestionIndex]);
-        } catch (error) {
-          console.error("Error loading questions:", error);
-          currentLanguage === "ta"
-            ? showNotification("கேள்விகள் ஏற்றப்படுவதில் பிழை!")
-            : showNotification("Error loading questions");
+        };
 
-          //   showNotification("கேள்விகள் ஏற்றப்படுவதில் பிழை!");
-
-          // Fallback to local questions if server fails
-          setTimeout(() => {
-            // This would be your fallback questions
-            // For now, we'll just show completion screen
-            showCompletionScreen();
-          }, 2000);
-        }
+        document.body.appendChild(script);
       }
 
-      // Display question function
+      // Display question function with error handling
       function displayQuestion(question) {
+        // Check if question is valid
+        if (!question || !question.text) {
+          console.error("Invalid question:", question);
+          showNotification("தவறான கேள்வி வடிவம்!");
+
+          // Try to move to next question or show completion
+          if (currentQuestionIndex + 1 < currentQuestions.length) {
+            currentQuestionIndex++;
+            displayQuestion(currentQuestions[currentQuestionIndex]);
+          } else {
+            showCompletionScreen();
+          }
+          return;
+        }
+
         // Update question text and counter
         questionTextEl.textContent = question.text;
         questionCounterEl.textContent = `கேள்வி ${currentQuestionIndex + 1}/${
@@ -373,23 +781,45 @@
         startTimer();
       }
 
-      // Next question function
+      // Next question function - FIXED
       async function nextQuestion() {
         const userAnswer = answerInputEl.value.trim();
         const currentQuestion = currentQuestions[currentQuestionIndex];
 
-        // Save response to Google Sheets
-        try {
-          await saveResponseToSheets({
-            questionId: currentQuestion.id,
-            questionText: currentQuestion.text,
-            userAnswer: userAnswer,
-            timestamp: new Date().toISOString(),
-          });
-        } catch (error) {
-          console.error("Error saving response:", error);
+        // Validate answer
+        if (!userAnswer) {
+          showNotification("நேரம் முடிந்தது!");
+          return;
         }
+        saveResponseToSheets(currentQuestion, userAnswer);
 
+        // Save response to Google Sheets
+        // try {
+        //   await saveResponseToSheets({
+        //     questionId: currentQuestion.id,
+        //     questionText: currentQuestion.text,
+        //     userAnswer: userAnswer,
+        //     timestamp: new Date().toISOString(),
+        //     // pattern: `Pattern ${currentQuestionIndex + 1}`, // Add pattern information
+        //   });
+        // } catch (error) {
+        //   console.error("Error saving response:", error);
+        // }
+        // Save response
+        function saveResponseToSheets(q, answer) {
+          fetch(scriptURL, {
+            method: "POST",
+            body: JSON.stringify({
+              questionId: q.id,
+              questionText: q.text,
+              userAnswer: answer,
+              timestamp: new Date().toISOString(),
+            }),
+          })
+            .then((res) => res.json())
+            .then((res) => console.log("Saved:", res))
+            .catch((err) => console.error("Error saving response:", err));
+        }
         // Stop timer
         clearInterval(timerInterval);
 
@@ -404,20 +834,27 @@
       }
 
       // Save response to Google Sheets
-      async function saveResponseToSheets(responseData) {
-        try {
-          await fetch(scriptURL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(responseData),
-          });
-        } catch (error) {
-          console.error("Error saving to Google Sheets:", error);
-          throw error;
-        }
-      }
+      //   async function saveResponseToSheets(responseData) {
+      //     try {
+      //       const response = await fetch(scriptURL, {
+      //         method: "POST",
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //         body: JSON.stringify(responseData),
+      //       });
+
+      //       if (!response.ok) {
+      //         throw new Error(`HTTP error! status: ${response.status}`);
+      //       }
+
+      //       const result = await response.json();
+      //       console.log("Save response result:", result);
+      //     } catch (error) {
+      //       console.error("Error saving to Google Sheets:", error);
+      //       // Don't throw error here - we don't want to break the quiz flow
+      //     }
+      //   }
 
       // Show completion screen
       function showCompletionScreen() {
@@ -461,6 +898,7 @@
 
       // Initialize translations
       updateTranslations();
+      initQuiz();
     </script>
   </body>
 </html>

@@ -215,7 +215,7 @@
         </div>
       </div>
     </section>
-
+   <!-- Quiz Request Section -->
     <section class="quiz-form" id="quiz">
       <div class="container">
         <h2 class="section-title tamil-text">வினாடி வினா பதிவு</h2>
@@ -228,22 +228,21 @@
                 type="text"
                 id="name"
                 name="name"
-                
+                required
                 class="tamil-text"
               />
             </div>
             <div class="form-group">
               <label for="email" class="tamil-text">மின்னஞ்சல்</label>
-              <input type="email" id="email" name="email"  />
-              <button style="padding: 10px;" id="emailCheck"></button>
+              <input type="email" id="email" name="email" required/>
             </div>
             <div class="form-group">
               <label for="phone" class="tamil-text">தொலைபேசி எண்</label>
               <input
-                type="number"
+                type="phone"
                 id="phone"
                 name="phone"
-                
+                required
                 class="tamil-text"
               />
             </div>
@@ -291,12 +290,6 @@ function clgDomainCheck(){
 </script>
     <!-- Add this script at the end of your body tag -->
     <script>
-      // const reqForm = document.getElementById("tirukural-quiz-form");
-      // reqForm.addEventListener("submit", function (e) {
-      //   e.preventDefault(); // Prevent default form submission
-      // let check = clgDomainCheck();
-      // if(check){
-      // Google Apps Script Web App URL (you need to create this)
       const scriptURL = "https://script.google.com/macros/s/AKfycbwc86ONlauqwsfUjozPc7hVw3BdJmB_qk3HkiK7eKG7YsKqmf_SswBb1nzcw0F6qa4rRg/exec";
 
       // Form submission handler
@@ -357,45 +350,38 @@ function clgDomainCheck(){
               submitBtn.disabled = false;
             });
           }
-          
-          
+
         });
     </script>
     <!-- Footer -->
 
-    <footer>
+    
+
+  <footer>
       <div class="container">
-        <div class="footer-content" id="contact">
-          <div class="footer-section">
-            <p>
-              <img
-                src="https://jerusalemengg.ac.in/images/JCE.png"
-                alt="BEST ENGINEERING COLLEGE IN TAMILNADU"
-              />
-
-              <br />
-              <span
-                class="gdlr-core-space-shortcode col"
-                id="span_1dd7_10"
-              ></span>
-
-              <br />
-              Velachery main road,
-
-              <br />
-              Narayanapuram, Pallikaranai,
-
-              <br />
-              Chennai- 600 100
-            </p>
+             <div class="footer-section logo-section">
+            <img
+              src="https://jerusalemengg.ac.in/images/JCE.png"
+              alt="Jerusalem College of Engineering"
+            />
             <h3 class="tamil-text" data-key="footer.about">தமிழ் மன்றம்</h3>
             <p class="tamil-text" data-key="footer.aboutDesc">
               தமிழ் மொழி மற்றும் கலாச்சாரத்தை பரப்புவதே நமது நோக்கம்
             </p>
           </div>
+             <div class="footer-section">
+            <h3 class="tamil-text">முகவரி</h3>
+            <p>
+              <span class="tamil-text">Velachery main road,</span><br />
+              <span class="tamil-text">Narayanapuram, Pallikaranai,</span
+              ><br />
+              <span class="tamil-text">Chennai - 600 100</span>
+            </p>
+          </div>
           <div class="footer-section">
             <h3 class="tamil-text" data-key="footer.contact">தொடர்புகள்</h3>
             <p class="tamil-text">மின்னஞ்சல்: info@tamilmandram.com</p>
+            <br>
             <p class="tamil-text">தொலைபேசி: +91 98765 43210</p>
           </div>
           <div class="footer-section">
@@ -415,7 +401,6 @@ function clgDomainCheck(){
         </div>
       </div>
     </footer>
-
     <!-- Copy Protection Notification -->
     <div class="copy-notification" id="copyNotification">
       <p class="tamil-text" data-key="copyNotification">
@@ -475,6 +460,7 @@ function clgDomainCheck(){
           "form.phone": "தொலைபேசி எண்",
           "form.experience": "திருக்குறள் அனுபவம்",
           "form.submit": "பதிவு செய்க",
+          
 
           // Footer
           "footer.about": "தமிழ் மன்றம்",
@@ -484,6 +470,7 @@ function clgDomainCheck(){
           "footer.social": "சமூக ஊடகங்கள்",
           "footer.copyright":
             "&copy; 2023 தமிழ் மன்றம். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+    
 
           // Notification
           copyNotification: "நகல் எடுக்க தடைவிதிக்கப்பட்டுள்ளது!",
