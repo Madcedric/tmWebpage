@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="ta">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>திருக்குறள் வினாடி வினா - தமிழ் மன்றம்</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@400;600&family=Noto+Sans+Tamil:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Hind Madurai", "Noto Sans Tamil", sans-serif;
+        background: linear-gradient(135deg, #f9f6e7 0%, #e8f4e8 100%);
+        color: #1a3c34;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      /* Header Styles */
+      header {
+        background: linear-gradient(to right, #1a3c34, #2a5c4c);
+        color: white;
+        padding: 15px 0;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .logo img {
+        height: 50px;
+      }
+
+      .logo h1 {
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-weight: 800;
+        font-size: 1.8rem;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 25px;
+        align-items: center;
+      }
+
+      nav a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: color 0.3s;
+        padding: 5px 10px;
+        border-radius: 4px;
+      }
+
+      nav a:hover {
+        color: #ffd700;
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* Language Switcher */
+      .language-switcher {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 8px 15px;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .language-switcher:hover {
+        background: rgba(255, 255, 255, 0.25);
+      }
+
+      .language-flag {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        background: #f1c40f;
+        color: #1a3c34;
+      }
+
+      /* Quiz Header */
+      .quiz-header {
+        background: linear-gradient(to right, #1a3c34, #2a5c4c);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .leafLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 15px;
+      }
+
+      .leafLogo h1 {
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-weight: 800;
+        font-size: 1.8rem;
+      }
+
+      .quiz-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      .quiz-date {
+        font-size: 1.1rem;
+        color: #ffd700;
+      }
+
+      .timer-container {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .timer {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      /* Quiz Content */
+      .quiz-content {
+        padding: 30px;
+      }
+
+      .webcam-container {
+        margin: 20px 0;
+        text-align: center;
+        display: none;
+      }
+
+      .question-container {
+        margin: 30px 0;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        position: relative;
+      }
+
+      .question-counter {
+        position: absolute;
+        top: -15px;
+        right: 20px;
+        background: #2a5c4c;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+      .question-text {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: #1a3c34;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .answer-input {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        border: 2px solid #2a5c4c;
+        border-radius: 8px;
+        font-family: "Noto Sans Tamil", sans-serif;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .controls-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .submit-container {
+        text-align: center;
+      }
+
+      .result-container {
+        text-align: center;
+        padding: 30px;
+        background: #f0f7ee;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+
+      .completion-container {
+        text-align: center;
+        padding: 40px 30px;
+      }
+
+      .completion-icon {
+        font-size: 4rem;
+        color: #2a5c4c;
+        margin-bottom: 20px;
+      }
+
+      .completion-message {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: #1a3c34;
+      }
+
+      .completion-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      /* Buttons */
+      .cta-button {
+        display: inline-block;
+        background: #2a5c4c;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(42, 92, 76, 0.3);
+        cursor: pointer;
+        border: none;
+      }
+
+      .cta-button:hover {
+        background: #1a3c34;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(42, 92, 76, 0.4);
+      }
+
+      .cta-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .cta-button.secondary {
+        background: #ff6b6b;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+      }
+
+      .cta-button.secondary:hover {
+        background: #e05a5a;
+      }
+
+      .cta-button.share {
+        background: #3b5998;
+        box-shadow: 0 4px 15px rgba(59, 89, 152, 0.3);
+      }
+
+      .cta-button.share:hover {
+        background: #2d4373;
+      }
+
+      /* Notification */
+      .notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #ff4d4d;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        display: none;
+        z-index: 1000;
+        animation: fadeIn 0.5s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* Tamil Font Styling */
+      .tamil-text {
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-weight: 600;
+      }
+
+      .english-text {
+        font-family: "Hind Madurai", sans-serif;
+      }
+
+      /* Progress Bar */
+      .progress-container {
+        width: 100%;
+        height: 8px;
+        background: #e0e0e0;
+        border-radius: 4px;
+        margin: 20px 0;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(to right, #2a5c4c, #3a7c6c);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      /* Share Options */
+      .share-options {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .share-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #3b5998;
+        color: white;
+        font-size: 1.5rem;
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      .share-button.whatsapp {
+        background: #25d366;
+      }
+
+      .share-button.facebook {
+        background: #3b5998;
+      }
+
+      .share-button.twitter {
+        background: #1da1f2;
+      }
+
+      .share-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Error Screen */
+      .error-container {
+        text-align: center;
+        padding: 40px 30px;
+      }
+
+      .error-icon {
+        font-size: 4rem;
+        color: #ff6b6b;
+        margin-bottom: 20px;
+      }
+
+      .error-message {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #1a3c34;
+      }
+
+      /* Loading Spinner */
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #2a5c4c;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      /* Camera Explanation */
+      .camera-explanation {
+        background: #f0f7ee;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 20px 0;
+        border-left: 4px solid #2a5c4c;
+      }
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        nav ul {
+          gap: 15px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .quiz-content {
+          padding: 20px;
+        }
+
+        .question-text {
+          font-size: 1.1rem;
+        }
+
+        .cta-button {
+          padding: 10px 20px;
+          font-size: 1rem;
+        }
+
+        .controls-container {
+          flex-direction: column;
+        }
+
+        .quiz-info {
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        .completion-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .share-options {
+          flex-wrap: wrap;
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="header-content">
+        <div class="logo">
+          <img
+            class="fas fa-leaf tamil-text"
+            src="../imgs/jce_logo.png"
+            alt="தமிழ் மன்றம் லோகோ"
+          />
+          <h1
+            style="
+              font-family: 'Times New Roman', Times, serif;
+              font-weight: 800;
+              font-size: 24px;
+              display: block;
+              margin-right: 10px;
+              margin: 0;
+              color: #fff;
+            "
+          >
+            Jerusalem College of Engineering
+          </h1>
+        </div>
+        <nav>
+          <ul>
+            <li>
+              <a href="../index.html" class="tamil-text" data-key="nav.home"
+                >முகப்பு</a
+              >
+            </li>
+            <li>
+              <a href="#" class="tamil-text" data-key="nav.events"
+                >நிகழ்வுகள்</a
+              >
+            </li>
+            <li>
+              <a href="#" class="tamil-text" data-key="nav.kural"
+                >திருக்குறள்</a
+              >
+            </li>
+            <li>
+              <a href="#" class="tamil-text" data-key="nav.contact"
+                >தொடர்புகள்</a
+              >
+            </li>
+            <li>
+              <div class="language-switcher" id="languageSwitcher">
+                <div class="language-flag">EN</div>
+                <span class="tamil-text" data-key="language">தமிழ்</span>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- Header Section -->
+      <div class="quiz-header">
+        <div class="leafLogo">
+          <i class="fas fa-leaf tamil-text" style="font-size: 2.5rem"></i>
+          <h1 class="tamil-text" data-key="quiz.title">
+            திருக்குறள் வினாடி வினா
+          </h1>
+        </div>
+        <div class="quiz-info">
+          <div class="quiz-date tamil-text" id="quiz-date">
+            இன்று: புதன், ஜூலை 12, 2023
+          </div>
+          <div class="timer-container">
+            <i class="fas fa-clock"></i>
+            <div class="timer tamil-text" id="timer">20</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading Screen -->
+      <div class="quiz-content" id="loading-screen">
+        <div class="question-container">
+          <div class="question-text tamil-text">
+            கேள்விகள் ஏற்றப்படுகின்றன...
+          </div>
+          <div class="spinner"></div>
+          <p class="tamil-text" id="loading-status">
+            தயவு செய்து காத்திருக்கவும்
+          </p>
+        </div>
+      </div>
+
+      <!-- Webcam Verification -->
+      <div class="quiz-content hidden" id="webcam-verification">
+        <div class="question-container">
+          <div class="question-text tamil-text" data-key="webcam.instruction">
+            கேமரா அணுகலை சரிபார்க்கவும்
+          </div>
+          <div class="camera-explanation">
+            <p class="tamil-text">
+              இந்த வினாடி வினா
+              <strong>மாணவர் அடையாளம் காண்பதற்காக</strong> கேமரா அணுகலைப்
+              பயன்படுத்துகிறது. உங்கள் தனியுரிமை மதிக்கப்படும், மேலும்
+              பதிவுசெய்யப்பட்ட வீடியோ வினா முடிந்ததும் தானாக நீக்கப்படும்.
+            </p>
+          </div>
+          <p class="tamil-text" data-key="webcam.description">
+            வினாடி வினாவில் பங்குபெற கேமரா அணுகல் தேவைப்படுகிறது. கீழே உள்ள
+            பொத்தானைக் கிளிக் செய்து கேமரா அணுகலை அனுமதிக்கவும்.
+          </p>
+        </div>
+
+        <div class="submit-container">
+          <button
+            id="enable-webcam"
+            class="cta-button tamil-text"
+            data-key="webcam.enable"
+          >
+            கேமரா அணுகலை அனுமதி
+          </button>
+        </div>
+      </div>
+
+      <!-- Quiz Content -->
+      <div class="quiz-content hidden" id="quiz-interface">
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+        </div>
+
+        <div class="webcam-container">
+          <!-- Webcam will run in background but not displayed -->
+          <video id="webcam-video" autoplay playsinline></video>
+        </div>
+
+        <div class="question-container">
+          <div class="question-counter tamil-text" id="question-counter">
+            கேள்வி 1/5
+          </div>
+          <div class="question-text tamil-text" id="question-text">
+            கேள்விகளை ஏற்றுகிறது...
+          </div>
+          <input
+            type="text"
+            id="answer-input"
+            class="answer-input tamil-text"
+            placeholder="உங்கள் பதிலை இங்கே 입력வும்"
+            autocomplete="off"
+          />
+          <p
+            class="tamil-text"
+            style="color: #777; margin-top: 10px; font-size: 0.9rem"
+          >
+            நேரம் முடியும் போது தானாக அடுத்த கேள்விக்கு செல்லும்
+          </p>
+        </div>
+
+        <div class="controls-container">
+          <div></div>
+          <div class="submit-container">
+            <button id="submit-answer" class="cta-button tamil-text">
+              சமர்ப்பி & அடுத்தது
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Screen -->
+      <div class="quiz-content hidden" id="error-screen">
+        <div class="error-container">
+          <div class="error-icon">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="error-message tamil-text">
+            கேள்விகள் ஏற்றப்படுவதில் பிழை ஏற்பட்டுள்ளது
+          </div>
+          <p class="tamil-text" style="margin-bottom: 30px">
+            தயவு செய்து தமிழ் மன்ற தொழில்நுட்ப குழுவைத் தொடர்பு கொள்ளவும்
+          </p>
+
+          <div class="completion-buttons">
+            <a href="../index.html" class="cta-button tamil-text">முகப்பு</a>
+            <a
+              href="mailto:technical@tamilmandram.com"
+              class="cta-button tamil-text secondary"
+              >தொடர்பு கொள்ள</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <!-- Completion Screen -->
+      <div class="quiz-content hidden" id="completion-screen">
+        <div class="completion-container">
+          <div class="completion-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="completion-message tamil-text">
+            வினாடி வினா முடிந்தது!
+          </div>
+          <p class="tamil-text" id="results-text" style="margin-bottom: 30px">
+            நீங்கள் 5 கேள்விகளில் 3 கேள்விகளுக்கு பதிலளித்தீர்கள்
+          </p>
+
+          <div class="share-options">
+            <div
+              class="share-button whatsapp"
+              title="WhatsApp"
+              onclick="shareOnWhatsApp()"
+            >
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div
+              class="share-button facebook"
+              title="Facebook"
+              onclick="shareOnFacebook()"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </div>
+            <div
+              class="share-button twitter"
+              title="Twitter"
+              onclick="shareOnTwitter()"
+            >
+              <i class="fab fa-twitter"></i>
+            </div>
+          </div>
+
+          <div class="completion-buttons">
+            <a href="../index.html" class="cta-button tamil-text">முகப்பு</a>
+            <a href="#" class="cta-button tamil-text secondary">நிகழ்வுகள்</a>
+            <button
+              class="cta-button tamil-text share"
+              onclick="shareResults()"
+            >
+              <i class="fas fa-share-alt"></i> முடிவுகளை பகிர்
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      <p class="tamil-text">கேமரா அணுகல் தேவைப்படுகிறது!</p>
+    </div>
+
+    <script>
+      // Google Apps Script URL (Replace with your deployed script URL)
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbzwZoTWMoz5U3lPDsgf88XbLUbBZNkjrRIPDM18qGDa82uMGo9UG4IB3Ubx53G3jpoR/exec";
+
+      // Translation data
+      const translations = {
+        ta: {
+          "nav.home": "முகப்பு",
+          "nav.events": "நிகழ்வுகள்",
+          "nav.kural": "திருக்குறள்",
+          "nav.contact": "தொடர்புகள்",
+          language: "தமிழ்",
+          "quiz.title": "திருக்குறள் வினாடி வினா",
+          "webcam.instruction": "கேமரா அணுகலை சரிபார்க்கவும்",
+          "webcam.description":
+            "வினாடி வினாவில் பங்குபெற கேமரா அணுகல் தேவைப்படுகிறது. கீழே உள்ள பொத்தானைக் கிளிக் செய்து கேமரா அணுகலை அனுமதிக்கவும்.",
+          "webcam.enable": "கேமரா அணுகலை அனுமதி",
+          "quiz.placeholder": "உங்கள் பதிலை இங்கே 입력வும்",
+          "quiz.next": "அடுத்த கேள்வி",
+          "completion.message": "வினாடி வினா முடிந்தது!",
+          "load-question": "கேள்விகளை ஏற்றுகிறது...",
+          "loading.message": "செயலியல் தயாராகிறது...",
+        },
+        en: {
+          "nav.home": "Home",
+          "nav.events": "Events",
+          "nav.kural": "Thirukural",
+          "nav.contact": "Contact",
+          language: "English",
+          "quiz.title": "Thirukural Quiz",
+          "webcam.instruction": "Verify Camera Access",
+          "webcam.description":
+            "Camera access is required to participate in the quiz. Click the button below to allow camera access.",
+          "webcam.enable": "Allow Camera Access",
+          "quiz.placeholder": "Type your answer here",
+          "quiz.next": "Next Question",
+          "completion.message": "Quiz Completed!",
+          "load-question": "Loading Questions...",
+          "loading.message": "Preparing application...",
+        },
+      };
+
+      // Telegram Bot Configuration (Replace with your actual bot token and chat ID)
+      const telegramBotToken = "YOUR_TELEGRAM_BOT_TOKEN";
+      const telegramChatId = "YOUR_TELEGRAM_CHAT_ID";
+
+      // DOM Elements
+      const quizDateEl = document.getElementById("quiz-date");
+      const questionTextEl = document.getElementById("question-text");
+      const answerInputEl = document.getElementById("answer-input");
+      const submitAnswerBtn = document.getElementById("submit-answer");
+      const enableWebcamBtn = document.getElementById("enable-webcam");
+      const webcamVideoEl = document.getElementById("webcam-video");
+      const timerEl = document.getElementById("timer");
+      const questionCounterEl = document.getElementById("question-counter");
+      const notificationEl = document.getElementById("notification");
+      const webcamVerificationEl = document.getElementById(
+        "webcam-verification"
+      );
+      const quizInterfaceEl = document.getElementById("quiz-interface");
+      const completionScreenEl = document.getElementById("completion-screen");
+      const errorScreenEl = document.getElementById("error-screen");
+      const loadingScreenEl = document.getElementById("loading-screen");
+      const languageSwitcherEl = document.getElementById("languageSwitcher");
+      const progressBarEl = document.getElementById("progress-bar");
+      const resultsTextEl = document.getElementById("results-text");
+      const loadingStatusEl = document.getElementById("loading-status");
+
+      // Quiz state variables
+      let currentQuestions = [];
+      let userAnswers = [];
+      let currentQuestionIndex = 0;
+      let stream = null;
+      let timerInterval = null;
+      let timeLeft = 20;
+      let currentLanguage = "ta";
+
+      // Set current date
+      const today = new Date();
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      quizDateEl.textContent = `இன்று: ${today.toLocaleDateString(
+        "ta-IN",
+        options
+      )}`;
+
+      // Initialize translation
+      function updateTranslations() {
+        document.querySelectorAll("[data-key]").forEach((element) => {
+          const key = element.getAttribute("data-key");
+          if (translations[currentLanguage][key]) {
+            if (element.placeholder) {
+              element.placeholder = translations[currentLanguage][key];
+            } else {
+              element.textContent = translations[currentLanguage][key];
+            }
+          }
+        });
+
+        // Update language switcher
+        document.querySelector(".language-flag").textContent =
+          currentLanguage === "ta" ? "EN" : "TA";
+      }
+      // Event listeners
+      enableWebcamBtn.addEventListener("click", enableWebcam);
+      submitAnswerBtn.addEventListener("click", submitAnswer);
+      answerInputEl.addEventListener("input", function () {
+        // Real-time validation if needed
+      });
+      languageSwitcherEl.addEventListener("click", toggleLanguage);
+
+      // Toggle language function
+      function toggleLanguage() {
+        currentLanguage = currentLanguage === "ta" ? "en" : "ta";
+        updateTranslations();
+
+        // Update UI elements based on language
+        // This would need implementation based on your translation system
+      }
+
+      // Enable webcam function
+      function enableWebcam() {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          navigator.mediaDevices
+            .getUserMedia({ video: true })
+            .then(function (videoStream) {
+              stream = videoStream;
+              webcamVideoEl.srcObject = stream;
+
+              // Hide verification and show quiz
+              webcamVerificationEl.classList.add("hidden");
+              loadingScreenEl.classList.remove("hidden");
+
+              // Start the quiz
+              initQuiz();
+            })
+            .catch(function (error) {
+              showNotification("கேமரா அணுகல் மறுக்கப்பட்டது!");
+              console.error("Camera error: ", error);
+            });
+        } else {
+          showNotification("கேமரா ஆதரவு இல்லை!");
+        }
+      }
+
+      // Initialize quiz function
+      function initQuiz() {
+        updateLoadingStatus("கேள்விகள் ஏற்றப்படுகின்றன...");
+
+        // Use JSONP approach to fetch questions from Google Apps Script
+        const script = document.createElement("script");
+        script.src = `${scriptURL}?callback=handleQuestions&r=${new Date().getTime()}`;
+
+        // Add error handling
+        script.onerror = function () {
+          console.error("Failed to load questions from Google Script");
+          handleQuestionsError("Failed to load questions from Google Script");
+        };
+
+        // Set timeout for JSONP request
+        const timeout = setTimeout(function () {
+          document.body.removeChild(script);
+          console.error("JSONP request timed out");
+          handleQuestionsError("JSONP request timed out");
+        }, 10000);
+
+        // Handle successful load
+        window.handleQuestions = function (data) {
+          clearTimeout(timeout);
+          document.body.removeChild(script);
+          delete window.handleQuestions;
+
+          console.log("Received from Google Apps Script:", data);
+
+          // Use fetched questions or show error if empty
+          if (!data || data.length === 0) {
+            handleQuestionsError("No questions received from API");
+            return;
+          }
+
+          currentQuestions = data;
+          userAnswers = new Array(data.length).fill("");
+          currentQuestionIndex = 0;
+          answerInputEl.value = "";
+
+          // Hide loading and show quiz
+          loadingScreenEl.classList.add("hidden");
+          quizInterfaceEl.classList.remove("hidden");
+
+          // Display the first question
+          displayQuestion(currentQuestions[currentQuestionIndex]);
+        };
+
+        document.body.appendChild(script);
+      }
+
+      // Handle questions error
+      function handleQuestionsError(error) {
+        console.error("Questions loading error:", error);
+
+        // Send Telegram notification
+        sendTelegramNotification(`Thirukkural Quiz Error: ${error}`);
+
+        // Show error screen to user
+        loadingScreenEl.classList.add("hidden");
+        webcamVerificationEl.classList.add("hidden");
+        quizInterfaceEl.classList.add("hidden");
+        errorScreenEl.classList.remove("hidden");
+      }
+
+      // Send Telegram notification
+      function sendTelegramNotification(message) {
+        if (!telegramBotToken || !telegramChatId) return;
+
+        const url = `https://api.telegram.org/bot${telegramBotToken}/sendMessage`;
+
+        fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            chat_id: telegramChatId,
+            text: message,
+            parse_mode: "HTML",
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => console.log("Telegram notification sent:", data))
+          .catch((error) =>
+            console.error("Error sending Telegram notification:", error)
+          );
+      }
+
+      // Update loading status
+      function updateLoadingStatus(message) {
+        if (loadingStatusEl) {
+          loadingStatusEl.textContent = message;
+        }
+      }
+
+      // Display question function
+      function displayQuestion(question) {
+        // Update question text and counter
+        questionTextEl.textContent = question.text;
+        questionCounterEl.textContent = `கேள்வி ${currentQuestionIndex + 1}/${
+          currentQuestions.length
+        }`;
+
+        // Update progress bar
+        progressBarEl.style.width = `${
+          ((currentQuestionIndex + 1) / currentQuestions.length) * 100
+        }%`;
+
+        // Clear input field
+        answerInputEl.value = userAnswers[currentQuestionIndex] || "";
+
+        // Focus on input field
+        setTimeout(() => answerInputEl.focus(), 100);
+
+        // Start timer
+        startTimer();
+      }
+
+      // Submit answer function
+      function submitAnswer() {
+        const userAnswer = answerInputEl.value.trim();
+
+        // Save answer
+        userAnswers[currentQuestionIndex] = userAnswer;
+
+        // Stop timer
+        clearInterval(timerInterval);
+
+        // Move to next question or show completion screen
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < currentQuestions.length) {
+          displayQuestion(currentQuestions[currentQuestionIndex]);
+        } else {
+          showCompletionScreen();
+        }
+      }
+
+      // Start timer function
+      function startTimer() {
+        timeLeft = 20;
+        timerEl.textContent = timeLeft;
+
+        clearInterval(timerInterval);
+
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          timerEl.textContent = timeLeft;
+
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            // Time's up, move to next question automatically
+            userAnswers[currentQuestionIndex] = ""; // Empty answer if time runs out
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < currentQuestions.length) {
+              displayQuestion(currentQuestions[currentQuestionIndex]);
+            } else {
+              showCompletionScreen();
+            }
+          }
+        }, 1000);
+      }
+
+      // Show completion screen
+      function showCompletionScreen() {
+        quizInterfaceEl.classList.add("hidden");
+        completionScreenEl.classList.remove("hidden");
+
+        // Calculate score
+        const answeredCount = userAnswers.filter(
+          (answer) => answer.trim() !== ""
+        ).length;
+        resultsTextEl.textContent = `நீங்கள் ${currentQuestions.length} கேள்விகளில் ${answeredCount} கேள்விகளுக்கு பதிலளித்தீர்கள்`;
+
+        // Save responses to Google Sheets
+        saveResponsesToSheets();
+
+        // Stop webcam
+        if (stream) {
+          stream.getTracks().forEach((track) => track.stop());
+          stream = null;
+        }
+      }
+
+      // Save responses to Google Sheets
+      function saveResponsesToSheets() {
+        userAnswers.forEach((answer, index) => {
+          if (answer) {
+            const responseData = {
+              questionId: currentQuestions[index].id,
+              questionText: currentQuestions[index].text,
+              userAnswer: answer,
+              timestamp: new Date().toISOString(),
+            };
+
+            fetch(scriptURL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(responseData),
+            })
+              .then((response) => response.json())
+              .then((data) => console.log("Save response success:", data))
+              .catch((error) => console.error("Error saving response:", error));
+          }
+        });
+      }
+
+      // Share results function
+      function shareResults() {
+        const answeredCount = userAnswers.filter(
+          (answer) => answer.trim() !== ""
+        ).length;
+        const shareText = `நான் திருக்குறள் வினாடி வினாவில் ${currentQuestions.length} கேள்விகளில் ${answeredCount} கேள்விகளுக்கு பதிலளித்தேன்!`;
+
+        if (navigator.share) {
+          navigator
+            .share({
+              title: "திருக்குறள் வினாடி வினா முடிவுகள்",
+              text: shareText,
+              url: window.location.href,
+            })
+            .catch((error) => {
+              console.log("Sharing failed:", error);
+              showNotification(
+                "பகிர்தல் தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்."
+              );
+            });
+        } else {
+          // Fallback for browsers that don't support Web Share API
+          prompt(
+            "முடிவுகளை பகிர கீழே உள்ள இணைப்பை நகலெடுக்கவும்:",
+            window.location.href
+          );
+        }
+      }
+
+      // Share on WhatsApp
+      function shareOnWhatsApp() {
+        const answeredCount = userAnswers.filter(
+          (answer) => answer.trim() !== ""
+        ).length;
+        const shareText = `நான் திருக்குறள் வினாடி வினாவில் ${currentQuestions.length} கேள்விகளில் ${answeredCount} கேள்விகளுக்கு பதிலளித்தேன்! ${window.location.href}`;
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(shareText)}`,
+          "_blank"
+        );
+      }
+
+      // Share on Facebook
+      function shareOnFacebook() {
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+            window.location.href
+          )}`,
+          "_blank"
+        );
+      }
+
+      // Share on Twitter
+      function shareOnTwitter() {
+        const answeredCount = userAnswers.filter(
+          (answer) => answer.trim() !== ""
+        ).length;
+        const shareText = `நான் திருக்குறள் வினாடி வினாவில் ${currentQuestions.length} கேள்விகளில் ${answeredCount} கேள்விகளுக்கு பதிலளித்தேன்!`;
+        window.open(
+          `https://twitter.com/intent/tweet?text=${encodeURIComponent(
+            shareText
+          )}&url=${encodeURIComponent(window.location.href)}`,
+          "_blank"
+        );
+      }
+
+      // Show notification function
+      function showNotification(message) {
+        notificationEl.querySelector("p").textContent = message;
+        notificationEl.style.display = "block";
+
+        setTimeout(() => {
+          notificationEl.style.display = "none";
+        }, 3000);
+      }
+
+      // Initialize the application
+      initApp();
+
+      function initApp() {
+        // Show loading screen initially
+        loadingScreenEl.classList.remove("hidden");
+        webcamVerificationEl.classList.add("hidden");
+        quizInterfaceEl.classList.add("hidden");
+        completionScreenEl.classList.add("hidden");
+        errorScreenEl.classList.add("hidden");
+
+        updateLoadingStatus("செயலியல் துவங்குகிறது...");
+
+        // Initialize translations
+        updateTranslations();
+
+        // Simulate loading process
+        setTimeout(() => {
+          loadingScreenEl.classList.add("hidden");
+          webcamVerificationEl.classList.remove("hidden");
+        }, 1500);
+      }
+    </script>
+  </body>
+</html>
