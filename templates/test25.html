@@ -516,6 +516,12 @@
     <div class="notification" id="notification">
       <p class="tamil-text" id="notification-text"></p>
     </div>
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      <p class="tamil-text" id="notification-text">
+        கேமரா அணுகல் தேவைப்படுகிறது!
+      </p>
+    </div>
 
     <script>
       // Google Apps Script URL (Replace with your deployed script URL)
@@ -751,21 +757,33 @@
 
         script.onerror = function () {
           console.error("Failed to save answer");
+          // Clean up global function even on error
+          delete window[callbackName];
           // Answer saving is not critical, so we continue anyway
         };
 
+        // Set a timeout to handle cases where the server doesn't respond
+        const timeoutId = setTimeout(() => {
+          console.error("Answer save timeout");
+          if (document.body.contains(script)) {
+            document.body.removeChild(script);
+          }
+          delete window[callbackName];
+        }, 10000); // 10 second timeout
+
         // Define the callback function with the unique name
         window[callbackName] = function (data) {
+          // Clear the timeout since we got a response
+          clearTimeout(timeoutId);
+          
           // Clean up
           if (document.body.contains(script)) {
             document.body.removeChild(script);
           }
           console.log("Answer saved:", data);
 
-          // Clean up global function
-          setTimeout(() => {
-            delete window[callbackName];
-          }, 1000);
+          // Clean up global function immediately
+          delete window[callbackName];
         };
 
         document.body.appendChild(script);
@@ -912,35 +930,59 @@
         }, 1000);
       }
 
-      // Save individual answer to Google Sheets
+      // Save individual answer to Google Sheets using JSONP
       function saveAnswerToSheets(question, answer) {
-        const responseData = {
+        // Create a unique callback name to avoid conflicts
+        const callbackName = "handleAnswerSave_" + Date.now();
+        
+        const params = new URLSearchParams({
           action: "saveAnswer",
-          userData: userData,
           sessionId: sessionId,
+          rollNo: userData.rollNo,
           questionId: question.id,
           questionText: question.text,
           questionType: question.type,
           pattern: question.pattern,
-          correctAnswer: question.correctAnswer,
           userAnswer: answer,
+          correctAnswer: question.correctAnswer,
           timestamp: new Date().toISOString(),
+          callback: callbackName,
+        });
+
+        const script = document.createElement("script");
+        script.src = `${scriptURL}?${params.toString()}`;
+
+        // Set a timeout to handle cases where the server doesn't respond
+        const timeoutId = setTimeout(() => {
+          console.error("Answer save timeout");
+          if (document.body.contains(script)) {
+            document.body.removeChild(script);
+          }
+          delete window[callbackName];
+        }, 10000); // 10 second timeout
+
+        script.onerror = function () {
+          clearTimeout(timeoutId);
+          console.error("Failed to save answer");
+          delete window[callbackName];
+          // Answer saving is not critical, so we continue anyway
         };
 
-        fetch(scriptURL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(responseData),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log("Answer saved successfully:", data);
-          })
-          .catch((error) => {
-            console.error("Error saving answer:", error);
-          });
+        // Define the callback function with the unique name
+        window[callbackName] = function (data) {
+          clearTimeout(timeoutId);
+          
+          // Clean up
+          if (document.body.contains(script)) {
+            document.body.removeChild(script);
+          }
+          console.log("Answer saved:", data);
+
+          // Clean up global function immediately
+          delete window[callbackName];
+        };
+
+        document.body.appendChild(script);
       }
 
       // Show completion screen
