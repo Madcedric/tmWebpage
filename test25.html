@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ta">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>திருக்குறள் வினாடி வினா - தமிழ் மன்றம்</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind+Madurai:wght@400;600&family=Noto+Sans+Tamil:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Hind Madurai", "Noto Sans Tamil", sans-serif;
+        background: linear-gradient(135deg, #f9f6e7 0%, #e8f4e8 100%);
+        color: #1a3c34;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .quiz-header {
+        background: linear-gradient(to right, #1a3c34, #2a5c4c);
+        color: white;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+      }
+
+      .leafLogo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 15px;
+        font-size: 2.5rem;
+      }
+
+      .leafLogo h1 {
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-weight: 800;
+        font-size: 1.8rem;
+      }
+
+      .quiz-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 15px;
+        flex-wrap: wrap;
+      }
+
+      .quiz-date {
+        font-size: 1.1rem;
+        color: #ffd700;
+      }
+
+      .timer-container {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 8px 15px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .timer {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+
+      .quiz-content {
+        padding: 30px;
+      }
+
+      .question-container {
+        margin: 30px 0;
+        padding: 20px;
+        background: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        position: relative;
+      }
+
+      .question-counter {
+        position: absolute;
+        top: -15px;
+        right: 20px;
+        background: #2a5c4c;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        z-index: 10;
+      }
+
+      .question-text {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        color: #1a3c34;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .answer-input {
+        width: 100%;
+        padding: 15px;
+        font-size: 18px;
+        border: 2px solid #2a5c4c;
+        border-radius: 8px;
+        font-family: "Noto Sans Tamil", sans-serif;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .controls-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+
+      .submit-container {
+        text-align: center;
+      }
+
+      .result-container {
+        text-align: center;
+        padding: 30px;
+        background: #f0f7ee;
+        border-radius: 10px;
+        margin-top: 30px;
+      }
+
+      .completion-container {
+        text-align: center;
+        padding: 40px 30px;
+      }
+
+      .completion-icon {
+        font-size: 4rem;
+        color: #2a5c4c;
+        margin-bottom: 20px;
+      }
+
+      .completion-message {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+        color: #1a3c34;
+      }
+
+      .completion-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .user-form {
+        background: #f9f9f9;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        margin: 20px 0;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #1a3c34;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-size: 16px;
+      }
+
+      .form-control:focus {
+        border-color: #2a5c4c;
+        outline: none;
+      }
+
+      .form-row {
+        display: flex;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .form-row .form-group {
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .cta-button {
+        display: inline-block;
+        background: #2a5c4c;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s;
+        box-shadow: 0 4px 15px rgba(42, 92, 76, 0.3);
+        cursor: pointer;
+        border: none;
+      }
+
+      .cta-button:hover {
+        background: #1a3c34;
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(42, 92, 76, 0.4);
+        color: white;
+      }
+
+      .cta-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .notification {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #ff4d4d;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        display: none;
+        z-index: 1000;
+        animation: fadeIn 0.5s;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .tamil-text {
+        font-family: "Noto Sans Tamil", sans-serif;
+        font-weight: 600;
+      }
+
+      .progress-container {
+        width: 100%;
+        height: 8px;
+        background: #e0e0e0;
+        border-radius: 4px;
+        margin: 20px 0;
+        overflow: hidden;
+      }
+
+      .progress-bar {
+        height: 100%;
+        background: linear-gradient(to right, #2a5c4c, #3a7c6c);
+        border-radius: 4px;
+        transition: width 0.3s ease;
+      }
+
+      .spinner {
+        border: 4px solid rgba(0, 0, 0, 0.1);
+        border-radius: 50%;
+        border-top: 4px solid #2a5c4c;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @media (max-width: 768px) {
+        .quiz-content {
+          padding: 20px;
+        }
+        .question-text {
+          font-size: 1.1rem;
+        }
+        .form-row {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="quiz-header">
+        <div class="leafLogo">
+          <i class="fas fa-leaf tamil-text"></i>
+          <h1 class="tamil-text">திருக்குறள் வினாடி வினா</h1>
+        </div>
+        <div class="quiz-info">
+          <div class="quiz-date tamil-text" id="quiz-date">
+            இன்று: புதன், ஜூலை 12, 2023
+          </div>
+          <div class="timer-container">
+            <i class="fas fa-clock"></i>
+            <div class="timer tamil-text" id="timer">20</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Registration -->
+      <div class="quiz-content" id="user-registration">
+        <div class="question-container">
+          <div class="question-text tamil-text">
+            பங்கேற்க உங்கள் விவரங்களை உள்ளிடவும்
+          </div>
+
+          <div class="user-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="rollno" class="tamil-text">பட்டியல் எண் *</label>
+                <input
+                  type="text"
+                  id="rollno"
+                  class="form-control tamil-text"
+                  placeholder="உங்கள் பட்டியல் எண்"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="name" class="tamil-text">முழுப் பெயர் *</label>
+                <input
+                  type="text"
+                  id="name"
+                  class="form-control tamil-text"
+                  placeholder="உங்கள் முழு பெயர்"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="department" class="tamil-text">பிரிவு *</label>
+                <select
+                  id="department"
+                  class="form-control tamil-text"
+                  required
+                >
+                  <option value="">தேர்வு செய்க</option>
+                  <option value="cse">கணினி பொறியியல்</option>
+                  <option value="ece">மின்னணு மற்றும் தொடர்பு பொறியியல்</option>
+                  <option value="eee">
+                    மின்னியல் மற்றும் மின்னணுவியல் பொறியியல்
+                  </option>
+                  <option value="mech">இயந்திர பொறியியல்</option>
+                  <option value="civil">சிவில் பொறியியல்</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="year" class="tamil-text">ஆண்டு *</label>
+                <select id="year" class="form-control tamil-text" required>
+                  <option value="">தேர்வு செய்க</option>
+                  <option value="1">1ஆம் ஆண்டு</option>
+                  <option value="2">2ஆம் ஆண்டு</option>
+                  <option value="3">3ஆம் ஆண்டு</option>
+                  <option value="4">4ஆம் ஆண்டு</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="submit-container">
+          <button id="register-user" class="cta-button tamil-text">
+            பதிவு செய்க
+          </button>
+        </div>
+      </div>
+
+      <!-- Loading Screen -->
+      <div class="quiz-content hidden" id="loading-screen">
+        <div class="question-container">
+          <div class="question-text tamil-text">
+            கேள்விகள் ஏற்றப்படுகின்றன...
+          </div>
+          <div class="spinner"></div>
+          <p class="tamil-text" id="loading-status">
+            3 வகை கேள்விகளில் இருந்து தேர்வு செய்யப்படுகிறது...
+          </p>
+        </div>
+      </div>
+
+      <!-- Quiz Interface -->
+      <div class="quiz-content hidden" id="quiz-interface">
+        <div class="progress-container">
+          <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+        </div>
+
+        <div class="question-container">
+          <div class="question-counter tamil-text" id="question-counter">
+            கேள்வி 1/3
+          </div>
+          <div class="question-text tamil-text" id="question-text">
+            கேள்விகளை ஏற்றுகிறது...
+          </div>
+          <input
+            type="text"
+            id="answer-input"
+            class="answer-input tamil-text"
+            placeholder="உங்கள் பதிலை இங்கே எழுதுவும்"
+            autocomplete="off"
+          />
+          <p
+            class="tamil-text"
+            style="color: #777; margin-top: 10px; font-size: 0.9rem"
+          >
+            நேரம் முடியும் போது தானாக அடுத்த கேள்விக்கு செல்லும்
+          </p>
+        </div>
+
+        <div class="controls-container">
+          <div></div>
+          <div class="submit-container">
+            <button id="submit-answer" class="cta-button tamil-text">
+              சமர்ப்பி & அடுத்தது
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completion Screen -->
+      <div class="quiz-content hidden" id="completion-screen">
+        <div class="completion-container">
+          <div class="completion-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="completion-message tamil-text">
+            வினாடி வினா முடிந்தது!
+          </div>
+          <p class="tamil-text" id="results-text" style="margin-bottom: 30px">
+            நீங்கள் 3 கேள்விகளில் 3 கேள்விகளுக்கு பதிலளித்தீர்கள்
+          </p>
+
+          <div class="completion-buttons">
+            <button onclick="location.reload()" class="cta-button tamil-text">
+              மீண்டும் முயற்சிக்கவும்
+            </button>
+            <button onclick="shareResults()" class="cta-button tamil-text">
+              முடிவுகளை பகிர்
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Error Screen -->
+      <div class="quiz-content hidden" id="error-screen">
+        <div class="completion-container">
+          <div class="completion-icon" style="color: #ff6b6b">
+            <i class="fas fa-exclamation-circle"></i>
+          </div>
+          <div class="completion-message tamil-text">பிழை ஏற்பட்டது!</div>
+          <p
+            class="tamil-text"
+            id="error-message"
+            style="margin-bottom: 30px"
+          ></p>
+          <div class="completion-buttons">
+            <button onclick="location.reload()" class="cta-button tamil-text">
+              மீண்டும் முயற்சிக்கவும்
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notification" id="notification">
+      <p class="tamil-text" id="notification-text"></p>
+    </div>
+
+    <script>
+      // Google Apps Script URL (Replace with your deployed script URL)
+      const scriptURL =
+        "https://script.google.com/macros/s/AKfycbwOPBjAZw-2OY5wuV8S5C7a-qYm4Ylyrl9h8d9LluOYqTr2KPIxhK-CUjN3rL9OeG4f/exec";
+
+      // DOM Elements
+      const quizDateEl = document.getElementById("quiz-date");
+      const questionTextEl = document.getElementById("question-text");
+      const answerInputEl = document.getElementById("answer-input");
+      const submitAnswerBtn = document.getElementById("submit-answer");
+      const timerEl = document.getElementById("timer");
+      const questionCounterEl = document.getElementById("question-counter");
+      const notificationEl = document.getElementById("notification");
+      const notificationTextEl = document.getElementById("notification-text");
+      const userRegistrationEl = document.getElementById("user-registration");
+      const quizInterfaceEl = document.getElementById("quiz-interface");
+      const completionScreenEl = document.getElementById("completion-screen");
+      const errorScreenEl = document.getElementById("error-screen");
+      const loadingScreenEl = document.getElementById("loading-screen");
+      const progressBarEl = document.getElementById("progress-bar");
+      const resultsTextEl = document.getElementById("results-text");
+      const errorMessageEl = document.getElementById("error-message");
+      const loadingStatusEl = document.getElementById("loading-status");
+      const registerUserBtn = document.getElementById("register-user");
+      const rollNoInput = document.getElementById("rollno");
+      const nameInput = document.getElementById("name");
+      const departmentInput = document.getElementById("department");
+      const yearInput = document.getElementById("year");
+
+      // Quiz state variables
+      let currentQuestions = [];
+      let userAnswers = [];
+      let currentQuestionIndex = 0;
+      let timerInterval = null;
+      let timeLeft = 20;
+      let userData = {};
+      let sessionId = "";
+
+      // Set current date
+      const today = new Date();
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      quizDateEl.textContent = `இன்று: ${today.toLocaleDateString(
+        "ta-IN",
+        options
+      )}`;
+
+      // Event listeners
+      registerUserBtn.addEventListener("click", registerUser);
+      submitAnswerBtn.addEventListener("click", submitAnswer);
+      answerInputEl.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          submitAnswer();
+        }
+      });
+
+      // Register user function
+      function registerUser() {
+        const rollNo = rollNoInput.value.trim();
+        const name = nameInput.value.trim();
+        const department = departmentInput.value;
+        const year = yearInput.value;
+
+        if (!rollNo || !name || !department || !year) {
+          showNotification("தயவு செய்து அனைத்து விவரங்களையும் நிரப்பவும்");
+          return;
+        }
+
+        userData = {
+          rollNo: rollNo,
+          name: name,
+          department: department,
+          year: year,
+          startTime: new Date().toISOString(),
+        };
+
+        // Generate a unique session ID
+        sessionId = Date.now() + "-" + Math.random().toString(36).substr(2, 9);
+
+        // Show loading screen
+        userRegistrationEl.classList.add("hidden");
+        loadingScreenEl.classList.remove("hidden");
+        loadingStatusEl.textContent = "பயனர் பதிவு செய்யப்படுகிறது...";
+
+        // Register user via Google Apps Script
+        registerUserInSheets();
+      }
+      // Google Apps Script URL (Replace with your deployed script URL)
+      // const scriptURL =
+      //   "https://script.google.com/macros/s/AKfycbyXyMfQGVpFeqpW1CyxuFMXmi581EhBVY1PdS7elERorjyfzOAt2SKsIbwMloRCaN6T/exec";
+
+      // DOM Elements and variables remain the same...
+
+      // Register user function - UPDATED FOR JSONP
+      function registerUser() {
+        const rollNo = rollNoInput.value.trim();
+        const name = nameInput.value.trim();
+        const department = departmentInput.value;
+        const year = yearInput.value;
+
+        if (!rollNo || !name || !department || !year) {
+          showNotification("தயவு செய்து அனைத்து விவரங்களையும் நிரப்பவும்");
+          return;
+        }
+
+        userData = {
+          rollNo: rollNo,
+          name: name,
+          department: department,
+          year: year,
+          startTime: new Date().toISOString(),
+        };
+
+        // Generate a unique session ID
+        sessionId = Date.now() + "-" + Math.random().toString(36).substr(2, 9);
+
+        // Show loading screen
+        userRegistrationEl.classList.add("hidden");
+        loadingScreenEl.classList.remove("hidden");
+        loadingStatusEl.textContent = "பயனர் பதிவு செய்யப்படுகிறது...";
+
+        // Register user via JSONP (GET request)
+        registerUserViaJSONP();
+      }
+
+      // Register user via JSONP
+      function registerUserViaJSONP() {
+        // Create a unique callback name to avoid conflicts
+        const callbackName = "handleUserRegistration_" + Date.now();
+        
+        const params = new URLSearchParams({
+          action: "registerUser",
+          rollNo: userData.rollNo,
+          name: userData.name,
+          department: userData.department,
+          year: userData.year,
+          sessionId: sessionId,
+          callback: callbackName,
+        });
+
+        const script = document.createElement("script");
+        script.src = `${scriptURL}?${params.toString()}`;
+
+        script.onerror = function () {
+          console.error("Failed to register user");
+          // Fallback to POST with CORS workaround
+          registerUserViaPost();
+        };
+
+        // Define the callback function with the unique name
+        window[callbackName] = function (data) {
+          // Clean up
+          if (document.body.contains(script)) {
+            document.body.removeChild(script);
+          }
+
+          if (data.status === "success") {
+            loadingStatusEl.textContent =
+              "3 வகை கேள்விகளில் இருந்து தேர்வு செய்யப்படுகிறது...";
+            sessionId = data.sessionId || sessionId;
+            initQuiz();
+          } else {
+            showError(
+              "பதிவு செய்வதில் பிழை: " + (data.message || "தெரியவில்லை")
+            );
+          }
+
+          // Clean up global function
+          setTimeout(() => {
+            delete window[callbackName];
+          }, 1000);
+        };
+
+        document.body.appendChild(script);
+      }
+
+      // Fallback POST registration with CORS workaround
+      function registerUserViaPost() {
+        const registrationData = {
+          action: "registerUser",
+          userData: userData,
+          sessionId: sessionId,
+          timestamp: new Date().toISOString(),
+        };
+
+        // Use no-cors mode or proxy if available
+        fetch(scriptURL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(registrationData),
+        })
+          .then(() => {
+            // With no-cors we can't read response, so assume success
+            loadingStatusEl.textContent =
+              "3 வகை கேள்விகளில் இருந்து தேர்வு செய்யப்படுகிறது...";
+            initQuiz();
+          })
+          .catch((error) => {
+            console.error("Error registering user:", error);
+            showError("பதிவு செய்வதில் பிழை. மீண்டும் முயற்சிக்கவும்.");
+          });
+      }
+
+      // Save answer via JSONP
+      function saveAnswerToSheets(question, answer) {
+        // Create a unique callback name to avoid conflicts
+        const callbackName = "handleAnswerSave_" + Date.now();
+        
+        const params = new URLSearchParams({
+          action: "saveAnswer",
+          sessionId: sessionId,
+          rollNo: userData.rollNo,
+          questionId: question.id,
+          questionText: question.text,
+          questionType: question.type,
+          pattern: question.pattern,
+          userAnswer: answer,
+          correctAnswer: question.correctAnswer,
+          timestamp: new Date().toISOString(),
+          callback: callbackName,
+        });
+
+        const script = document.createElement("script");
+        script.src = `${scriptURL}?${params.toString()}`;
+
+        script.onerror = function () {
+          console.error("Failed to save answer");
+          // Answer saving is not critical, so we continue anyway
+        };
+
+        // Define the callback function with the unique name
+        window[callbackName] = function (data) {
+          // Clean up
+          if (document.body.contains(script)) {
+            document.body.removeChild(script);
+          }
+          console.log("Answer saved:", data);
+
+          // Clean up global function
+          setTimeout(() => {
+            delete window[callbackName];
+          }, 1000);
+        };
+
+        document.body.appendChild(script);
+      }
+
+      // Initialize quiz function - UPDATED FOR JSONP
+      function initQuiz() {
+        loadingStatusEl.textContent = "கேள்விகள் ஏற்றப்படுகின்றன...";
+        
+        // Create a unique callback name to avoid conflicts
+        const callbackName = "handleQuestions_" + Date.now();
+        
+        const params = new URLSearchParams({
+          action: "getQuestions",
+          callback: callbackName,
+          r: new Date().getTime(),
+        });
+
+        const script = document.createElement("script");
+        script.src = `${scriptURL}?${params.toString()}`;
+
+        script.onerror = function () {
+          console.error("Failed to load questions from Google Script");
+          showError("கேள்விகள் ஏற்றப்படுவதில் பிழை. மீண்டும் முயற்சிக்கவும்.");
+        };
+
+        const timeout = setTimeout(function () {
+          if (document.body.contains(script)) {
+            document.body.removeChild(script);
+          }
+          showError(
+            "கேள்விகள் ஏற்ற நேரம் முடிந்துவிட்டது. மீண்டும் முயற்சிக்கவும்."
+          );
+        }, 10000);
+
+        // Define the callback function with the unique name
+        window[callbackName] = function (data) {
+          clearTimeout(timeout);
+          if (document.body.contains(script)) {
+            document.body.removeChild(script);
+          }
+
+          console.log("Received questions from Google Apps Script:", data);
+
+          if (!data || data.length === 0) {
+            showError(
+              "கேள்விகள் கிடைக்கவில்லை. தயவு செய்து பின்னர் முயற்சிக்கவும்."
+            );
+            return;
+          }
+
+          currentQuestions = data;
+          userAnswers = new Array(data.length).fill("");
+          currentQuestionIndex = 0;
+          answerInputEl.value = "";
+
+          loadingScreenEl.classList.add("hidden");
+          quizInterfaceEl.classList.remove("hidden");
+
+          displayQuestion(currentQuestions[currentQuestionIndex]);
+
+          // Clean up global function
+          setTimeout(() => {
+            delete window[callbackName];
+          }, 1000);
+        };
+
+        document.body.appendChild(script);
+      }
+
+      // Rest of your functions remain the same...
+
+      // Display question function
+      function displayQuestion(question) {
+        // Update question text and counter
+        questionTextEl.textContent = question.text;
+        questionCounterEl.textContent = `கேள்வி ${currentQuestionIndex + 1}/${
+          currentQuestions.length
+        }`;
+
+        // Update progress bar
+        progressBarEl.style.width = `${
+          ((currentQuestionIndex + 1) / currentQuestions.length) * 100
+        }%`;
+
+        // Clear input field
+        answerInputEl.value = userAnswers[currentQuestionIndex] || "";
+
+        // Focus on input field
+        setTimeout(() => answerInputEl.focus(), 100);
+
+        // Start timer
+        startTimer();
+      }
+
+      // Submit answer function
+      function submitAnswer() {
+        const userAnswer = answerInputEl.value.trim();
+
+        // Save answer
+        userAnswers[currentQuestionIndex] = userAnswer;
+
+        // Save answer to Google Sheets immediately
+        saveAnswerToSheets(currentQuestions[currentQuestionIndex], userAnswer);
+
+        // Stop timer
+        clearInterval(timerInterval);
+
+        // Move to next question or show completion screen
+        currentQuestionIndex++;
+
+        if (currentQuestionIndex < currentQuestions.length) {
+          displayQuestion(currentQuestions[currentQuestionIndex]);
+        } else {
+          showCompletionScreen();
+        }
+      }
+
+      // Start timer function
+      function startTimer() {
+        timeLeft = 20;
+        timerEl.textContent = timeLeft;
+
+        clearInterval(timerInterval);
+
+        timerInterval = setInterval(() => {
+          timeLeft--;
+          timerEl.textContent = timeLeft;
+
+          if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            // Time's up, save empty answer and move to next question automatically
+            userAnswers[currentQuestionIndex] = ""; // Empty answer if time runs out
+            saveAnswerToSheets(currentQuestions[currentQuestionIndex], "");
+
+            currentQuestionIndex++;
+
+            if (currentQuestionIndex < currentQuestions.length) {
+              displayQuestion(currentQuestions[currentQuestionIndex]);
+            } else {
+              showCompletionScreen();
+            }
+          }
+        }, 1000);
+      }
+
+      // Save individual answer to Google Sheets
+      function saveAnswerToSheets(question, answer) {
+        const responseData = {
+          action: "saveAnswer",
+          userData: userData,
+          sessionId: sessionId,
+          questionId: question.id,
+          questionText: question.text,
+          questionType: question.type,
+          pattern: question.pattern,
+          correctAnswer: question.correctAnswer,
+          userAnswer: answer,
+          timestamp: new Date().toISOString(),
+        };
+
+        fetch(scriptURL, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(responseData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("Answer saved successfully:", data);
+          })
+          .catch((error) => {
+            console.error("Error saving answer:", error);
+          });
+      }
+
+      // Show completion screen
+      function showCompletionScreen() {
+        quizInterfaceEl.classList.add("hidden");
+        completionScreenEl.classList.remove("hidden");
+
+        // Calculate score
+        const answeredCount = userAnswers.filter(
+          (answer) => answer.trim() !== ""
+        ).length;
+        resultsTextEl.textContent = `நீங்கள் ${currentQuestions.length} கேள்விகளில் ${answeredCount} கேள்விகளுக்கு பதிலளித்தீர்கள்`;
+      }
+
+      // Show error screen
+      function showError(message) {
+        loadingScreenEl.classList.add("hidden");
+        errorScreenEl.classList.remove("hidden");
+        errorMessageEl.textContent = message;
+      }
+
+      // Show notification function
+      function showNotification(message) {
+        notificationTextEl.textContent = message;
+        notificationEl.style.display = "block";
+
+        setTimeout(() => {
+          notificationEl.style.display = "none";
+        }, 3000);
+      }
+
+      // Share results function
+      function shareResults() {
+        const answeredCount = userAnswers.filter(
+          (answer) => answer.trim() !== ""
+        ).length;
+        const shareText = `நான் திருக்குறள் வினாடி வினாவில் ${currentQuestions.length} வகை கேள்விகளில் ${answeredCount} கேள்விகளுக்கு பதிலளித்தேன்!`;
+
+        if (navigator.share) {
+          navigator
+            .share({
+              title: "திருக்குறள் வினாடி வினா முடிவுகள்",
+              text: shareText,
+              url: window.location.href,
+            })
+            .catch((error) => {
+              console.log("Sharing failed:", error);
+              showNotification(
+                "பகிர்தல் தோல்வியடைந்தது. மீண்டும் முயற்சிக்கவும்."
+              );
+            });
+        } else {
+          // Fallback for browsers that don't support Web Share API
+          prompt(
+            "முடிவுகளை பகிர கீழே உள்ள இணைப்பை நகலெடுக்கவும்:",
+            window.location.href
+          );
+        }
+      }
+
+      // Initialize the application
+      function initApp() {
+        // Show user registration first
+        userRegistrationEl.classList.remove("hidden");
+        loadingScreenEl.classList.add("hidden");
+        quizInterfaceEl.classList.add("hidden");
+        completionScreenEl.classList.add("hidden");
+        errorScreenEl.classList.add("hidden");
+      }
+
+      // Start the application
+      initApp();
+    </script>
+  </body>
+</html>
